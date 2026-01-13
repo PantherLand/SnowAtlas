@@ -1,64 +1,68 @@
 const axios = require('axios');
 
-// Using free tier APIs
-const OPENWEATHER_CURRENT_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const OPENWEATHER_FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast';
-const API_KEY = process.env.OPENWEATHER_API_KEY;
+// Using Open-Meteo - Free weather API (no API key required!)
+const OPEN_METEO_URL = 'https://api.open-meteo.com/v1/forecast';
 
 /**
- * Get weather forecast and historical data for a ski resort
+ * Get weather forecast and historical data for a ski resort using Open-Meteo
  * @param {number} lat - Latitude
  * @param {number} lon - Longitude
- * @returns {Promise<Object>} Weather data with past 7 days and future 7 days
+ * @returns {Promise<Object>} Weather data with current conditions and 7-day forecast
  */
 async function getWeatherData(lat, lon) {
   try {
-    // Get current weather
-    const currentResponse = await axios.get(OPENWEATHER_CURRENT_URL, {
+    // Get weather data from Open-Meteo (free, no API key needed)
+    const response = await axios.get(OPEN_METEO_URL, {
       params: {
-        lat,
-        lon,
-        appid: API_KEY,
-        units: 'metric',
-        lang: 'en'
+        latitude: lat,
+        longitude: lon,
+        current: 'temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,snowfall,weather_code,wind_speed_10m',
+        daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max',
+        timezone: 'auto',
+        forecast_days: 7
       }
     });
 
-    // Get 5-day forecast (3-hour intervals)
-    const forecastResponse = await axios.get(OPENWEATHER_FORECAST_URL, {
-      params: {
-        lat,
-        lon,
-        appid: API_KEY,
-        units: 'metric',
-        lang: 'en'
-      }
-    });
+    const data = response.data;
 
-    const current = currentResponse.data;
-    const forecastList = forecastResponse.data.list;
+    // Process current weather
+    const current = {
+      temp: data.current.temperature_2m,
+      feels_like: data.current.apparent_temperature,
+      humidity: data.current.relative_humidity_2m,
+      wind_speed: data.current.wind_speed_10m,
+      weather: getWeatherDescription(data.current.weather_code),
+      snow_1h: data.current.snowfall || 0,
+      timestamp: Math.floor(new Date(data.current.time).getTime() / 1000)
+    };
 
-    // Process forecast data - group by day and get daily summaries
-    const dailyForecasts = processDailyForecasts(forecastList);
+    // Process daily forecast
+    const forecast = [];
+    for (let i = 0; i < data.daily.time.length; i++) {
+      forecast.push({
+        date: Math.floor(new Date(data.daily.time[i]).getTime() / 1000),
+        temp: {
+          min: data.daily.temperature_2m_min[i],
+          max: data.daily.temperature_2m_max[i],
+          day: (data.daily.temperature_2m_min[i] + data.daily.temperature_2m_max[i]) / 2
+        },
+        weather: getWeatherDescription(data.daily.weather_code[i]),
+        snow: data.daily.snowfall_sum[i] || 0,
+        humidity: data.current.relative_humidity_2m, // Daily humidity not available, use current
+        wind_speed: data.daily.wind_speed_10m_max[i],
+        pop: (data.daily.precipitation_probability_max[i] || 0) / 100 // Convert to 0-1 range
+      });
+    }
 
-    // Process and combine data
     const weatherData = {
-      current: {
-        temp: current.main.temp,
-        feels_like: current.main.feels_like,
-        humidity: current.main.humidity,
-        wind_speed: current.wind.speed,
-        weather: current.weather[0],
-        snow_1h: current.snow?.['1h'] || 0,
-        timestamp: current.dt
-      },
-      historical: [], // Historical data requires paid API
-      forecast: dailyForecasts
+      current,
+      historical: [], // Historical data would require past dates
+      forecast
     };
 
     return weatherData;
   } catch (error) {
-    console.error('Error fetching weather data:', error.message);
+    console.error('Error fetching weather data from Open-Meteo:', error.message);
     if (error.response) {
       console.error('API Response:', error.response.data);
     }
@@ -67,6 +71,43 @@ async function getWeatherData(lat, lon) {
     console.log('Returning mock weather data for demonstration');
     return getMockWeatherData(lat, lon);
   }
+}
+
+/**
+ * Convert WMO weather code to description
+ * Based on WMO Weather interpretation codes
+ * @param {number} code - WMO weather code
+ * @returns {Object} Weather description object
+ */
+function getWeatherDescription(code) {
+  const weatherMap = {
+    0: { main: 'Clear', description: 'clear sky', icon: '01d' },
+    1: { main: 'Clear', description: 'mainly clear', icon: '01d' },
+    2: { main: 'Clouds', description: 'partly cloudy', icon: '02d' },
+    3: { main: 'Clouds', description: 'overcast', icon: '03d' },
+    45: { main: 'Fog', description: 'fog', icon: '50d' },
+    48: { main: 'Fog', description: 'depositing rime fog', icon: '50d' },
+    51: { main: 'Drizzle', description: 'light drizzle', icon: '09d' },
+    53: { main: 'Drizzle', description: 'moderate drizzle', icon: '09d' },
+    55: { main: 'Drizzle', description: 'dense drizzle', icon: '09d' },
+    61: { main: 'Rain', description: 'slight rain', icon: '10d' },
+    63: { main: 'Rain', description: 'moderate rain', icon: '10d' },
+    65: { main: 'Rain', description: 'heavy rain', icon: '10d' },
+    71: { main: 'Snow', description: 'slight snow', icon: '13d' },
+    73: { main: 'Snow', description: 'moderate snow', icon: '13d' },
+    75: { main: 'Snow', description: 'heavy snow', icon: '13d' },
+    77: { main: 'Snow', description: 'snow grains', icon: '13d' },
+    80: { main: 'Rain', description: 'slight rain showers', icon: '09d' },
+    81: { main: 'Rain', description: 'moderate rain showers', icon: '09d' },
+    82: { main: 'Rain', description: 'violent rain showers', icon: '09d' },
+    85: { main: 'Snow', description: 'slight snow showers', icon: '13d' },
+    86: { main: 'Snow', description: 'heavy snow showers', icon: '13d' },
+    95: { main: 'Thunderstorm', description: 'thunderstorm', icon: '11d' },
+    96: { main: 'Thunderstorm', description: 'thunderstorm with slight hail', icon: '11d' },
+    99: { main: 'Thunderstorm', description: 'thunderstorm with heavy hail', icon: '11d' }
+  };
+
+  return weatherMap[code] || { main: 'Unknown', description: 'unknown', icon: '01d' };
 }
 
 /**
