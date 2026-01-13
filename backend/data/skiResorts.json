@@ -1,0 +1,462 @@
+[
+  {
+    "id": "whistler-blackcomb",
+    "name": {
+      "en": "Whistler Blackcomb",
+      "zh": "惠斯勒黑梳山"
+    },
+    "country": "Canada",
+    "countryCode": "CA",
+    "region": {
+      "en": "British Columbia",
+      "zh": "不列颠哥伦比亚省"
+    },
+    "coordinates": {
+      "lat": 50.1163,
+      "lon": -122.9574
+    },
+    "elevation": {
+      "base": 675,
+      "summit": 2284
+    },
+    "popularity": 10,
+    "timezone": "America/Vancouver"
+  },
+  {
+    "id": "vail",
+    "name": {
+      "en": "Vail Mountain Resort",
+      "zh": "韦尔雪山度假村"
+    },
+    "country": "USA",
+    "countryCode": "US",
+    "region": {
+      "en": "Colorado",
+      "zh": "科罗拉多州"
+    },
+    "coordinates": {
+      "lat": 39.6403,
+      "lon": -106.3742
+    },
+    "elevation": {
+      "base": 2500,
+      "summit": 3527
+    },
+    "popularity": 10,
+    "timezone": "America/Denver"
+  },
+  {
+    "id": "aspen-snowmass",
+    "name": {
+      "en": "Aspen Snowmass",
+      "zh": "阿斯本雪堆山"
+    },
+    "country": "USA",
+    "countryCode": "US",
+    "region": {
+      "en": "Colorado",
+      "zh": "科罗拉多州"
+    },
+    "coordinates": {
+      "lat": 39.2130,
+      "lon": -106.9378
+    },
+    "elevation": {
+      "base": 2451,
+      "summit": 3813
+    },
+    "popularity": 9,
+    "timezone": "America/Denver"
+  },
+  {
+    "id": "park-city",
+    "name": {
+      "en": "Park City Mountain",
+      "zh": "帕克城雪山"
+    },
+    "country": "USA",
+    "countryCode": "US",
+    "region": {
+      "en": "Utah",
+      "zh": "犹他州"
+    },
+    "coordinates": {
+      "lat": 40.6514,
+      "lon": -111.5079
+    },
+    "elevation": {
+      "base": 2103,
+      "summit": 3048
+    },
+    "popularity": 9,
+    "timezone": "America/Denver"
+  },
+  {
+    "id": "chamonix",
+    "name": {
+      "en": "Chamonix Mont-Blanc",
+      "zh": "霞慕尼勃朗峰"
+    },
+    "country": "France",
+    "countryCode": "FR",
+    "region": {
+      "en": "Auvergne-Rhône-Alpes",
+      "zh": "奥弗涅-罗纳-阿尔卑斯大区"
+    },
+    "coordinates": {
+      "lat": 45.9237,
+      "lon": 6.8694
+    },
+    "elevation": {
+      "base": 1035,
+      "summit": 3842
+    },
+    "popularity": 10,
+    "timezone": "Europe/Paris"
+  },
+  {
+    "id": "zermatt",
+    "name": {
+      "en": "Zermatt - Matterhorn",
+      "zh": "采尔马特-马特洪峰"
+    },
+    "country": "Switzerland",
+    "countryCode": "CH",
+    "region": {
+      "en": "Valais",
+      "zh": "瓦莱州"
+    },
+    "coordinates": {
+      "lat": 46.0207,
+      "lon": 7.7491
+    },
+    "elevation": {
+      "base": 1620,
+      "summit": 3883
+    },
+    "popularity": 10,
+    "timezone": "Europe/Zurich"
+  },
+  {
+    "id": "st-anton",
+    "name": {
+      "en": "St. Anton am Arlberg",
+      "zh": "圣安东阿尔贝格"
+    },
+    "country": "Austria",
+    "countryCode": "AT",
+    "region": {
+      "en": "Tyrol",
+      "zh": "蒂罗尔州"
+    },
+    "coordinates": {
+      "lat": 47.1270,
+      "lon": 10.2640
+    },
+    "elevation": {
+      "base": 1304,
+      "summit": 2811
+    },
+    "popularity": 9,
+    "timezone": "Europe/Vienna"
+  },
+  {
+    "id": "val-thorens",
+    "name": {
+      "en": "Val Thorens - Les 3 Vallées",
+      "zh": "瓦尔托朗斯-三山谷"
+    },
+    "country": "France",
+    "countryCode": "FR",
+    "region": {
+      "en": "Savoie",
+      "zh": "萨瓦省"
+    },
+    "coordinates": {
+      "lat": 45.2979,
+      "lon": 6.5801
+    },
+    "elevation": {
+      "base": 1800,
+      "summit": 3230
+    },
+    "popularity": 10,
+    "timezone": "Europe/Paris"
+  },
+  {
+    "id": "cortina",
+    "name": {
+      "en": "Cortina d'Ampezzo",
+      "zh": "科尔蒂纳丹佩佐"
+    },
+    "country": "Italy",
+    "countryCode": "IT",
+    "region": {
+      "en": "Veneto",
+      "zh": "威尼托大区"
+    },
+    "coordinates": {
+      "lat": 46.5369,
+      "lon": 12.1357
+    },
+    "elevation": {
+      "base": 1224,
+      "summit": 2930
+    },
+    "popularity": 8,
+    "timezone": "Europe/Rome"
+  },
+  {
+    "id": "niseko",
+    "name": {
+      "en": "Niseko United",
+      "zh": "二世谷联合雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Hokkaido",
+      "zh": "北海道"
+    },
+    "coordinates": {
+      "lat": 42.8048,
+      "lon": 140.6874
+    },
+    "elevation": {
+      "base": 308,
+      "summit": 1308
+    },
+    "popularity": 10,
+    "timezone": "Asia/Tokyo"
+  },
+  {
+    "id": "hakuba",
+    "name": {
+      "en": "Hakuba Valley",
+      "zh": "白马谷"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Nagano",
+      "zh": "长野县"
+    },
+    "coordinates": {
+      "lat": 36.6995,
+      "lon": 137.8311
+    },
+    "elevation": {
+      "base": 760,
+      "summit": 1831
+    },
+    "popularity": 9,
+    "timezone": "Asia/Tokyo"
+  },
+  {
+    "id": "wanlong",
+    "name": {
+      "en": "Wanlong Ski Resort",
+      "zh": "万龙滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Hebei",
+      "zh": "河北省"
+    },
+    "coordinates": {
+      "lat": 40.9714,
+      "lon": 115.2875
+    },
+    "elevation": {
+      "base": 1500,
+      "summit": 2110
+    },
+    "popularity": 8,
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "id": "genting",
+    "name": {
+      "en": "Genting Resort Secret Garden",
+      "zh": "密苑云顶滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Hebei",
+      "zh": "河北省"
+    },
+    "coordinates": {
+      "lat": 40.9892,
+      "lon": 115.2814
+    },
+    "elevation": {
+      "base": 1600,
+      "summit": 2160
+    },
+    "popularity": 9,
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "id": "yabuli",
+    "name": {
+      "en": "Yabuli Ski Resort",
+      "zh": "亚布力滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Heilongjiang",
+      "zh": "黑龙江省"
+    },
+    "coordinates": {
+      "lat": 44.7644,
+      "lon": 128.4711
+    },
+    "elevation": {
+      "base": 240,
+      "summit": 1374
+    },
+    "popularity": 8,
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "id": "beidahu",
+    "name": {
+      "en": "Beidahu Ski Resort",
+      "zh": "北大壶滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Jilin",
+      "zh": "吉林省"
+    },
+    "coordinates": {
+      "lat": 43.2103,
+      "lon": 126.5578
+    },
+    "elevation": {
+      "base": 500,
+      "summit": 1404
+    },
+    "popularity": 8,
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "id": "verbier",
+    "name": {
+      "en": "Verbier - 4 Vallées",
+      "zh": "韦尔比耶-四山谷"
+    },
+    "country": "Switzerland",
+    "countryCode": "CH",
+    "region": {
+      "en": "Valais",
+      "zh": "瓦莱州"
+    },
+    "coordinates": {
+      "lat": 46.0964,
+      "lon": 7.2276
+    },
+    "elevation": {
+      "base": 1500,
+      "summit": 3330
+    },
+    "popularity": 9,
+    "timezone": "Europe/Zurich"
+  },
+  {
+    "id": "courchevel",
+    "name": {
+      "en": "Courchevel",
+      "zh": "库舍维尔"
+    },
+    "country": "France",
+    "countryCode": "FR",
+    "region": {
+      "en": "Savoie",
+      "zh": "萨瓦省"
+    },
+    "coordinates": {
+      "lat": 45.4147,
+      "lon": 6.6347
+    },
+    "elevation": {
+      "base": 1300,
+      "summit": 2738
+    },
+    "popularity": 9,
+    "timezone": "Europe/Paris"
+  },
+  {
+    "id": "ischgl",
+    "name": {
+      "en": "Ischgl - Samnaun",
+      "zh": "伊施格尔-桑瑙恩"
+    },
+    "country": "Austria",
+    "countryCode": "AT",
+    "region": {
+      "en": "Tyrol",
+      "zh": "蒂罗尔州"
+    },
+    "coordinates": {
+      "lat": 47.0116,
+      "lon": 10.2991
+    },
+    "elevation": {
+      "base": 1400,
+      "summit": 2872
+    },
+    "popularity": 9,
+    "timezone": "Europe/Vienna"
+  },
+  {
+    "id": "jackson-hole",
+    "name": {
+      "en": "Jackson Hole Mountain Resort",
+      "zh": "杰克逊霍尔雪山度假村"
+    },
+    "country": "USA",
+    "countryCode": "US",
+    "region": {
+      "en": "Wyoming",
+      "zh": "怀俄明州"
+    },
+    "coordinates": {
+      "lat": 43.5875,
+      "lon": -110.8279
+    },
+    "elevation": {
+      "base": 1924,
+      "summit": 3185
+    },
+    "popularity": 9,
+    "timezone": "America/Denver"
+  },
+  {
+    "id": "lake-louise",
+    "name": {
+      "en": "Lake Louise Ski Resort",
+      "zh": "路易斯湖滑雪场"
+    },
+    "country": "Canada",
+    "countryCode": "CA",
+    "region": {
+      "en": "Alberta",
+      "zh": "艾伯塔省"
+    },
+    "coordinates": {
+      "lat": 51.4254,
+      "lon": -116.1773
+    },
+    "elevation": {
+      "base": 1646,
+      "summit": 2637
+    },
+    "popularity": 9,
+    "timezone": "America/Edmonton"
+  }
+]
