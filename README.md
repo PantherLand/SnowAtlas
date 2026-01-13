@@ -27,13 +27,13 @@ A Progressive Web App (PWA) for monitoring ski resorts worldwide with real-time 
 ### Backend
 - Node.js
 - Express
-- OpenWeatherMap API
+- Open-Meteo API (free, no API key required!)
 - geoip-lite (IP geolocation)
 
 ## 📋 Prerequisites
 
 - Node.js 14+ and npm
-- OpenWeatherMap API key (free tier available)
+- No API keys required!
 
 ## 🛠️ Installation
 
@@ -49,20 +49,9 @@ cd SnowAtlas
 ```bash
 cd backend
 npm install
-
-# Copy and configure environment variables
-cp .env.example .env
-# Edit .env and add your OpenWeatherMap API key
 ```
 
-Get your free API key from [OpenWeatherMap](https://openweathermap.org/api):
-1. Sign up for a free account
-2. Navigate to API Keys section
-3. Generate a new API key
-4. Add it to `backend/.env`:
-   ```
-   OPENWEATHER_API_KEY=your_api_key_here
-   ```
+**No API key needed!** The app uses [Open-Meteo](https://open-meteo.com/), a free weather API that doesn't require registration or API keys.
 
 ### 3. Frontend Setup
 
@@ -199,11 +188,11 @@ Switch languages using the language toggle in the header.
 
 ### Backend (.env)
 ```
-OPENWEATHER_API_KEY=your_api_key_here
 PORT=5000
 NODE_ENV=development
 FRONTEND_URL=http://localhost:3000
 ```
+*Note: No API key required! Open-Meteo is completely free.*
 
 ### Frontend (.env)
 ```
@@ -242,13 +231,77 @@ Edit `backend/data/skiResorts.json`:
 }
 ```
 
-### API Integration
+### Weather API Integration
 
-The app uses OpenWeatherMap One Call API 3.0:
-- Free tier: 1,000 calls/day
-- 7-day forecast included
-- Snow data in weather conditions
-- Historical data requires paid plan (currently disabled in MVP)
+The app uses **Open-Meteo** - a free, open-source weather API:
+- **Completely free** - No API key or registration required
+- **No rate limits** - Reasonable usage is unlimited
+- **7-day forecast** - Temperature, precipitation, snowfall
+- **High-quality data** - Based on multiple weather models
+- **WMO weather codes** - Standard international weather descriptions
+
+API Documentation: https://open-meteo.com/en/docs
+
+### Backend API Endpoints
+
+The SnowAtlas backend provides a REST API with the following endpoints:
+
+#### Resorts API
+
+**Get All Resorts**
+```
+GET /api/resorts
+```
+Returns all 20+ ski resorts with details including name, location, coordinates, and elevation.
+
+**Get Nearby Resorts**
+```
+GET /api/resorts/nearby?limit=5
+```
+Returns ski resorts near the user's location (based on IP geolocation).
+- Query params: `limit` (optional, default: 5)
+
+**Get Resort by ID**
+```
+GET /api/resorts/:id
+```
+Returns details for a specific resort.
+- URL params: `id` (e.g., "niseko", "whistler-blackcomb")
+
+**Get Resorts by Country**
+```
+GET /api/resorts/country/:countryCode
+```
+Returns all resorts in a specific country.
+- URL params: `countryCode` (e.g., "US", "JP", "FR")
+
+#### Weather API
+
+**Get Weather for Resort**
+```
+GET /api/weather/:resortId
+```
+Returns complete weather data for a resort including:
+- Current weather (temperature, humidity, wind, snowfall)
+- 7-day forecast (daily temperatures, snow, precipitation probability)
+- Snow conditions summary (total snowfall, snowy days, snow quality)
+
+**Batch Weather Request**
+```
+POST /api/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": ["niseko", "whistler-blackcomb", "chamonix"]
+}
+```
+Returns weather data for multiple resorts (max 10 per request).
+
+#### Health Check
+```
+GET /health
+```
+Returns server status and timestamp.
 
 ## 🚧 Future Enhancements
 
