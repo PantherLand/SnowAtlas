@@ -20,7 +20,10 @@
       "summit": 2284
     },
     "popularity": 10,
-    "timezone": "America/Vancouver"
+    "timezone": "America/Vancouver",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Whistler Blackcomb"
   },
   {
     "id": "vail",
@@ -58,7 +61,7 @@
       "zh": "科罗拉多州"
     },
     "coordinates": {
-      "lat": 39.2130,
+      "lat": 39.213,
       "lon": -106.9378
     },
     "elevation": {
@@ -66,7 +69,10 @@
       "summit": 3813
     },
     "popularity": 9,
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Aspen/Snowmass"
   },
   {
     "id": "park-city",
@@ -89,7 +95,10 @@
       "summit": 3048
     },
     "popularity": 9,
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Park City Mountain Resort"
   },
   {
     "id": "chamonix",
@@ -112,7 +121,10 @@
       "summit": 3842
     },
     "popularity": 10,
-    "timezone": "Europe/Paris"
+    "timezone": "Europe/Paris",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Chamonix Mont-Blanc"
   },
   {
     "id": "zermatt",
@@ -135,7 +147,10 @@
       "summit": 3883
     },
     "popularity": 10,
-    "timezone": "Europe/Zurich"
+    "timezone": "Europe/Zurich",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Zermatt"
   },
   {
     "id": "st-anton",
@@ -150,15 +165,18 @@
       "zh": "蒂罗尔州"
     },
     "coordinates": {
-      "lat": 47.1270,
-      "lon": 10.2640
+      "lat": 47.127,
+      "lon": 10.264
     },
     "elevation": {
       "base": 1304,
       "summit": 2811
     },
     "popularity": 9,
-    "timezone": "Europe/Vienna"
+    "timezone": "Europe/Vienna",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "St. Anton am Arlberg"
   },
   {
     "id": "val-thorens",
@@ -181,7 +199,10 @@
       "summit": 3230
     },
     "popularity": 10,
-    "timezone": "Europe/Paris"
+    "timezone": "Europe/Paris",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Val Thorens"
   },
   {
     "id": "cortina",
@@ -204,7 +225,10 @@
       "summit": 2930
     },
     "popularity": 8,
-    "timezone": "Europe/Rome"
+    "timezone": "Europe/Rome",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Cortina d'Ampezzo"
   },
   {
     "id": "niseko",
@@ -227,7 +251,10 @@
       "summit": 1308
     },
     "popularity": 10,
-    "timezone": "Asia/Tokyo"
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Niseko United"
   },
   {
     "id": "hakuba",
@@ -250,7 +277,10 @@
       "summit": 1831
     },
     "popularity": 9,
-    "timezone": "Asia/Tokyo"
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Hakuba Valley"
   },
   {
     "id": "wanlong",
@@ -319,7 +349,10 @@
       "summit": 1374
     },
     "popularity": 8,
-    "timezone": "Asia/Shanghai"
+    "timezone": "Asia/Shanghai",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Yabuli Ski Resort"
   },
   {
     "id": "beidahu",
@@ -457,7 +490,10 @@
       "summit": 3330
     },
     "popularity": 9,
-    "timezone": "Europe/Zurich"
+    "timezone": "Europe/Zurich",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Verbier"
   },
   {
     "id": "courchevel",
@@ -480,7 +516,10 @@
       "summit": 2738
     },
     "popularity": 9,
-    "timezone": "Europe/Paris"
+    "timezone": "Europe/Paris",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Courchevel"
   },
   {
     "id": "ischgl",
@@ -503,7 +542,10 @@
       "summit": 2872
     },
     "popularity": 9,
-    "timezone": "Europe/Vienna"
+    "timezone": "Europe/Vienna",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Ischgl"
   },
   {
     "id": "jackson-hole",
@@ -526,7 +568,10 @@
       "summit": 3185
     },
     "popularity": 9,
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Jackson Hole Mountain Resort"
   },
   {
     "id": "lake-louise",
@@ -549,6 +594,9 @@
       "summit": 2637
     },
     "popularity": 9,
-    "timezone": "America/Edmonton"
+    "timezone": "America/Edmonton",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": "Lake Louise Ski Resort"
   }
 ]

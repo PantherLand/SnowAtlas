@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { format, fromUnixTime, addDays, subDays } from 'date-fns';
+import { format, fromUnixTime } from 'date-fns';
 import './WeatherDisplay.css';
 
 const WeatherDisplay = ({ weatherData }) => {
@@ -14,10 +14,6 @@ const WeatherDisplay = ({ weatherData }) => {
   const safeCurrent = current || {};
   const safeSnow = snowConditions || {};
   const safeForecast = Array.isArray(forecast) ? forecast : [];
-
-  const formatDate = (timestamp) => {
-    return format(fromUnixTime(timestamp), 'MMM dd');
-  };
 
   const formatDay = (timestamp) => {
     return format(fromUnixTime(timestamp), 'EEE');

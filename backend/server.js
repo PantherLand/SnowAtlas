@@ -54,9 +54,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`
+// Start server only when run directly (avoid open handles in tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`
 ╔═══════════════════════════════════════╗
 ║      SnowAtlas Backend Server         ║
 ╚═══════════════════════════════════════╝
@@ -77,6 +78,7 @@ Available Endpoints:
 
 ${!process.env.OPENWEATHER_API_KEY ? '⚠️  WARNING: OPENWEATHER_API_KEY not set!' : '✅ OpenWeather API key configured'}
   `);
-});
+  });
+}
 
 module.exports = app;
