@@ -103,6 +103,18 @@ const ResortDetail = () => {
           <span>{t('resort.distance')}</span>
           <strong>{resort.distance ?? '--'} {t('units.km')}</strong>
         </div>
+        <div>
+          <span>{t('resort.trails')}</span>
+          <strong>{resort.trailCount ?? '--'}</strong>
+        </div>
+        <div>
+          <span>{t('resort.longestRun')}</span>
+          <strong>
+            {resort.longestRunKm === null || resort.longestRunKm === undefined
+              ? '--'
+              : `${resort.longestRunKm} ${t('units.km')}`}
+          </strong>
+        </div>
       </div>
 
       {weatherData ? (

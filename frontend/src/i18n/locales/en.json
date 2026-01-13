@@ -21,6 +21,8 @@
     "base": "Base",
     "summit": "Summit",
     "distance": "Distance",
+    "trails": "Total Trails",
+    "longestRun": "Longest Run",
     "addToWatchlist": "Add to Watchlist",
     "removeFromWatchlist": "Remove from Watchlist",
     "viewDetails": "View Details",

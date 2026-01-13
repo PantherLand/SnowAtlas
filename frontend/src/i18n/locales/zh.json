@@ -21,6 +21,8 @@
     "base": "基地",
     "summit": "顶峰",
     "distance": "距离",
+    "trails": "雪道总数",
+    "longestRun": "最长雪道",
     "addToWatchlist": "加入监控",
     "removeFromWatchlist": "移除监控",
     "viewDetails": "查看详情",
