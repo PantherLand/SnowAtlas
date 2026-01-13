@@ -22,7 +22,7 @@ router.get('/:resortId', async (req, res) => {
       resort.coordinates.lon
     );
 
-    const snowConditions = weatherService.calculateSnowConditions(weatherData);
+    const snowConditions = weatherService.calculateSnowConditions(weatherData, resort);
 
     res.json({
       success: true,
@@ -77,7 +77,7 @@ router.post('/batch', async (req, res) => {
           resort.coordinates.lon
         );
 
-        const snowConditions = weatherService.calculateSnowConditions(weatherData);
+        const snowConditions = weatherService.calculateSnowConditions(weatherData, resort);
 
         return {
           resortId: resort.id,

@@ -7,11 +7,14 @@ const locationService = require('../services/locationService');
  */
 router.get('/', (req, res) => {
   try {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     const resorts = locationService.getAllResorts();
+    const includeDistance = req.query.includeDistance === '1';
+    const data = includeDistance ? locationService.attachDistance(resorts, ip) : resorts;
     res.json({
       success: true,
-      count: resorts.length,
-      data: resorts
+      count: data.length,
+      data
     });
   } catch (error) {
     res.status(500).json({
@@ -47,11 +50,35 @@ router.get('/nearby', (req, res) => {
 });
 
 /**
+ * GET /api/resorts/recommended - Get same-country resorts sorted by distance
+ */
+router.get('/recommended', (req, res) => {
+  try {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const resorts = locationService.getCountryResortsByDistance(ip);
+
+    res.json({
+      success: true,
+      count: resorts.length,
+      data: resorts
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch recommended resorts',
+      error: error.message
+    });
+  }
+});
+
+/**
  * GET /api/resorts/:id - Get specific resort by ID
  */
 router.get('/:id', (req, res) => {
   try {
     const resort = locationService.getResortById(req.params.id);
+    const includeDistance = req.query.includeDistance === '1';
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
     if (!resort) {
       return res.status(404).json({
@@ -60,9 +87,11 @@ router.get('/:id', (req, res) => {
       });
     }
 
+    const data = includeDistance ? locationService.attachDistance([resort], ip)[0] : resort;
+
     res.json({
       success: true,
-      data: resort
+      data
     });
   } catch (error) {
     res.status(500).json({

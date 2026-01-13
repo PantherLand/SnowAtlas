@@ -14,7 +14,7 @@
 .page-title {
   font-size: 2rem;
   margin: 0;
-  color: #1a1a1a;
+  color: #2a2a2a;
 }
 
 .watchlist-grid {
@@ -24,10 +24,11 @@
 }
 
 .watchlist-item {
-  background: #f8f9fa;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 18px;
   padding: 4px;
   transition: all 0.3s;
+  border: 1px dashed rgba(255, 121, 168, 0.25);
 }
 
 .empty-state {
@@ -43,13 +44,13 @@
 
 .empty-state h3 {
   font-size: 1.5rem;
-  color: #1a1a1a;
+  color: #2a2a2a;
   margin: 0 0 12px 0;
 }
 
 .empty-state p {
   font-size: 1rem;
-  color: #666;
+  color: #6b6b6b;
   margin: 0;
 }
 

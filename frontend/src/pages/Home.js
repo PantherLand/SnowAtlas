@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { resortAPI } from '../services/api';
+import { resortAPI, weatherAPI } from '../services/api';
 import ResortCard from '../components/ResortCard';
+import withTimeout from '../utils/withTimeout';
 import './Home.css';
 
 const Home = () => {
   const { t } = useTranslation();
   const [nearbyResorts, setNearbyResorts] = useState([]);
+  const [weatherMap, setWeatherMap] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [refreshKey, setRefreshKey] = useState(0);
+  const observerRef = useRef(null);
+  const loadingIdsRef = useRef(new Set());
+  const cardRefs = useRef({});
 
-  useEffect(() => {
-    loadNearbyResorts();
-  }, []);
-
-  const loadNearbyResorts = async () => {
+  const loadNearbyResorts = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await resortAPI.getNearby(6);
+      const response = await withTimeout(resortAPI.getRecommended());
       setNearbyResorts(response.data || []);
     } catch (err) {
       setError(err.message);
@@ -27,10 +27,64 @@ const Home = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleWatchlistChange = () => {
-    setRefreshKey(prev => prev + 1);
+  useEffect(() => {
+    loadNearbyResorts();
+  }, [loadNearbyResorts]);
+
+  const loadWeatherForResort = useCallback(async (resortId) => {
+    if (weatherMap[resortId] || loadingIdsRef.current.has(resortId)) return;
+    loadingIdsRef.current.add(resortId);
+    try {
+      const response = await withTimeout(weatherAPI.getByResort(resortId), 15000);
+      if (response?.data) {
+        setWeatherMap((prev) => ({
+          ...prev,
+          [resortId]: {
+            ...response.data.weather,
+            snowConditions: response.data.snowConditions
+          }
+        }));
+      }
+    } catch (err) {
+      console.error(`Error loading weather for ${resortId}:`, err);
+    } finally {
+      loadingIdsRef.current.delete(resortId);
+    }
+  }, [weatherMap]);
+
+  useEffect(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const resortId = entry.target.getAttribute('data-resort-id');
+            if (resortId) {
+              loadWeatherForResort(resortId);
+              observerRef.current.unobserve(entry.target);
+            }
+          }
+        });
+      },
+      { rootMargin: '120px', threshold: 0.2 }
+    );
+
+    Object.values(cardRefs.current).forEach((node) => {
+      if (node) observerRef.current.observe(node);
+    });
+
+    return () => observerRef.current?.disconnect();
+  }, [nearbyResorts, loadWeatherForResort]);
+
+  const setCardRef = (resortId) => (node) => {
+    if (node) {
+      cardRefs.current[resortId] = node;
+    }
   };
 
   if (loading) {
@@ -74,14 +128,15 @@ const Home = () => {
 
         <div className="resorts-grid">
           {nearbyResorts.length === 0 ? (
-            <p className="no-resorts">{t('home.error')}</p>
+            <p className="no-resorts">{t('home.empty')}</p>
           ) : (
             nearbyResorts.map((resort) => (
-              <ResortCard
-                key={resort.id}
-                resort={resort}
-                onWatchlistChange={handleWatchlistChange}
-              />
+              <div key={resort.id} ref={setCardRef(resort.id)} data-resort-id={resort.id}>
+                <ResortCard
+                  resort={resort}
+                  weatherData={weatherMap[resort.id]}
+                />
+              </div>
             ))
           )}
         </div>

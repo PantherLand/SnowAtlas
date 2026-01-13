@@ -13,7 +13,8 @@
     "nearbyTitle": "Ski Resorts Near You",
     "popularTitle": "Popular Ski Resorts",
     "loading": "Loading...",
-    "error": "Failed to load resorts"
+    "error": "Failed to load resorts",
+    "empty": "No resorts found"
   },
   "resort": {
     "elevation": "Elevation",
@@ -23,7 +24,8 @@
     "addToWatchlist": "Add to Watchlist",
     "removeFromWatchlist": "Remove from Watchlist",
     "viewDetails": "View Details",
-    "inWatchlist": "In Watchlist"
+    "inWatchlist": "In Watchlist",
+    "notFound": "Resort not found"
   },
   "weather": {
     "current": "Current Weather",
@@ -35,14 +37,18 @@
     "windSpeed": "Wind Speed",
     "conditions": "Conditions",
     "snowQuality": "Snow Quality",
-    "snowyDays": "Snowy Days",
-    "totalSnow": "Total Expected Snow",
+    "snowyDays": "Snowy Days (Past 7)",
+    "totalSnow": "Past 7 Days Snowfall",
+    "noSnow": "no snow past 7 days",
+    "freshPowder": "Fresh powder now",
+    "powderAlert": "Powder hot spot",
+    "powderForecast": "Powder incoming",
     "lastUpdate": "Last Updated",
     "quality": {
       "powder": "Powder",
       "good": "Good",
-      "wet": "Wet Snow",
-      "slushy": "Slushy",
+      "hard": "Hard Pack",
+      "icy": "Wet & Icy",
       "unknown": "Unknown"
     }
   },
@@ -52,6 +58,11 @@
     "emptyHint": "Add ski resorts from the home page or resort list",
     "snowAlert": "Snow Alert",
     "weatherUpdate": "Weather Update"
+  },
+  "resorts": {
+    "count": "{{count}} resorts",
+    "allCountries": "All Countries",
+    "empty": "No resorts found"
   },
   "units": {
     "celsius": "°C",
@@ -82,6 +93,8 @@
     "search": "Search",
     "filter": "Filter",
     "sort": "Sort",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "days": "days",
+    "back": "Back"
   }
 }

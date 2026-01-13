@@ -4,6 +4,7 @@ import { getWatchlist } from '../utils/watchlist';
 import { resortAPI, weatherAPI } from '../services/api';
 import ResortCard from '../components/ResortCard';
 import WeatherDisplay from '../components/WeatherDisplay';
+import withTimeout from '../utils/withTimeout';
 import './Watchlist.css';
 
 const Watchlist = () => {
@@ -33,7 +34,7 @@ const Watchlist = () => {
       }
 
       // Load all resorts
-      const resortsResponse = await resortAPI.getAll();
+      const resortsResponse = await withTimeout(resortAPI.getAll({ includeDistance: true }));
       const allResorts = resortsResponse.data || [];
 
       // Filter resorts in watchlist
@@ -44,12 +45,12 @@ const Watchlist = () => {
 
       // Load weather data for all watched resorts
       if (watchlistIds.length > 0) {
-        const weatherResponse = await weatherAPI.getBatch(watchlistIds);
+        const weatherResponse = await withTimeout(weatherAPI.getBatch(watchlistIds), 15000);
         const weatherMap = {};
         (weatherResponse.data || []).forEach(item => {
           if (item) {
             weatherMap[item.resortId] = {
-              weather: item.weather,
+              ...item.weather,
               snowConditions: item.snowConditions
             };
           }
@@ -126,11 +127,12 @@ const Watchlist = () => {
                 resort={resort}
                 onWatchlistChange={handleWatchlistChange}
                 showWeather={true}
-                weatherData={weatherData[resort.id]?.weather}
+                weatherData={weatherData[resort.id]}
+                enableNavigation={false}
               />
             </div>
             {selectedResort?.id === resort.id && weatherData[resort.id] && (
-              <WeatherDisplay weatherData={weatherData[resort.id].weather} />
+              <WeatherDisplay weatherData={weatherData[resort.id]} />
             )}
           </div>
         ))}

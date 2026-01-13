@@ -345,6 +345,98 @@
     "timezone": "Asia/Shanghai"
   },
   {
+    "id": "songhua-lake",
+    "name": {
+      "en": "Songhua Lake Ski Resort",
+      "zh": "松花湖滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Jilin",
+      "zh": "吉林省"
+    },
+    "coordinates": {
+      "lat": 43.7786,
+      "lon": 126.5552
+    },
+    "elevation": {
+      "base": 540,
+      "summit": 1320
+    },
+    "popularity": 7,
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "id": "jikepulin",
+    "name": {
+      "en": "Jikepulin Ski Resort",
+      "zh": "吉克普林滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Xinjiang",
+      "zh": "新疆"
+    },
+    "coordinates": {
+      "lat": 48.6723,
+      "lon": 87.0166
+    },
+    "elevation": {
+      "base": 1200,
+      "summit": 2848
+    },
+    "popularity": 8,
+    "timezone": "Asia/Urumqi"
+  },
+  {
+    "id": "jiangjunshan",
+    "name": {
+      "en": "Jiangjunshan Ski Resort",
+      "zh": "将军山滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Xinjiang",
+      "zh": "新疆"
+    },
+    "coordinates": {
+      "lat": 48.0555,
+      "lon": 86.4474
+    },
+    "elevation": {
+      "base": 1320,
+      "summit": 2450
+    },
+    "popularity": 7,
+    "timezone": "Asia/Urumqi"
+  },
+  {
+    "id": "koktokay",
+    "name": {
+      "en": "Koktokay Ski Resort",
+      "zh": "可可托海滑雪场"
+    },
+    "country": "China",
+    "countryCode": "CN",
+    "region": {
+      "en": "Xinjiang",
+      "zh": "新疆"
+    },
+    "coordinates": {
+      "lat": 47.2069,
+      "lon": 89.9782
+    },
+    "elevation": {
+      "base": 1350,
+      "summit": 3100
+    },
+    "popularity": 8,
+    "timezone": "Asia/Urumqi"
+  },
+  {
     "id": "verbier",
     "name": {
       "en": "Verbier - 4 Vallées",

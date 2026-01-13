@@ -34,9 +34,16 @@ api.interceptors.response.use(
 
 // Resort API
 export const resortAPI = {
-  getAll: () => api.get('/resorts'),
+  getAll: (options = {}) => {
+    const query = options.includeDistance ? '?includeDistance=1' : '';
+    return api.get(`/resorts${query}`);
+  },
   getNearby: (limit = 5) => api.get(`/resorts/nearby?limit=${limit}`),
-  getById: (id) => api.get(`/resorts/${id}`),
+  getRecommended: () => api.get('/resorts/recommended'),
+  getById: (id, options = {}) => {
+    const query = options.includeDistance ? '?includeDistance=1' : '';
+    return api.get(`/resorts/${id}${query}`);
+  },
   getByCountry: (countryCode) => api.get(`/resorts/country/${countryCode}`)
 };
 

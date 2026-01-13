@@ -1,8 +1,10 @@
 .weather-display {
-  background: white;
-  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 252, 255, 0.95));
+  border-radius: 20px;
   padding: 24px;
   margin: 20px 0;
+  box-shadow: 0 18px 34px rgba(174, 230, 255, 0.35);
+  border: 2px solid rgba(174, 230, 255, 0.5);
 }
 
 .weather-section {
@@ -16,7 +18,7 @@
 .weather-section h3 {
   margin: 0 0 16px 0;
   font-size: 1.25rem;
-  color: #1a1a1a;
+  color: #2a2a2a;
   font-weight: 600;
 }
 
@@ -30,7 +32,7 @@
 .current-temp-large {
   font-size: 4rem;
   font-weight: 700;
-  color: #2196F3;
+  color: #ff79a8;
   line-height: 1;
 }
 
@@ -40,7 +42,7 @@
 
 .weather-condition {
   font-size: 1.25rem;
-  color: #1a1a1a;
+  color: #2a2a2a;
   margin-bottom: 12px;
   text-transform: capitalize;
 }
@@ -53,17 +55,17 @@
 }
 
 .stat-label {
-  color: #666;
+  color: #6b6b6b;
   font-weight: 500;
 }
 
 .stat-value {
-  color: #1a1a1a;
+  color: #2a2a2a;
   font-weight: 600;
 }
 
 .snow-stat {
-  color: #2196F3;
+  color: #ff4b8a;
   font-weight: 600;
 }
 
@@ -75,11 +77,12 @@
 }
 
 .snow-stat-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #ffd4e5 0%, #cfeeff 100%);
+  color: #2a2a2a;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 18px;
   text-align: center;
+  border: 2px dashed rgba(255, 121, 168, 0.35);
 }
 
 .snow-stat-value {
@@ -90,7 +93,7 @@
 
 .snow-stat-label {
   font-size: 0.85rem;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 /* Forecast */
@@ -101,22 +104,23 @@
 }
 
 .forecast-day {
-  background: #f8f9fa;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
   padding: 16px 12px;
   text-align: center;
   transition: transform 0.2s;
+  border: 1px solid rgba(205, 184, 255, 0.35);
 }
 
 .forecast-day:hover {
   transform: translateY(-2px);
-  background: #e9ecef;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .forecast-date {
   font-weight: 600;
   margin-bottom: 8px;
-  color: #1a1a1a;
+  color: #2a2a2a;
   font-size: 0.9rem;
 }
 
@@ -135,24 +139,24 @@
 
 .temp-max {
   font-weight: 700;
-  color: #1a1a1a;
+  color: #2a2a2a;
 }
 
 .temp-min {
-  color: #666;
+  color: #6b6b6b;
 }
 
 .forecast-snow,
 .forecast-precipitation {
   font-size: 0.8rem;
   margin-top: 4px;
-  color: #2196F3;
+  color: #ff4b8a;
 }
 
 .weather-loading {
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: #6b6b6b;
 }
 
 @media (max-width: 768px) {

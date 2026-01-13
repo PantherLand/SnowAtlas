@@ -7,15 +7,16 @@
 .hero-section {
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  border-radius: 16px;
+  background: linear-gradient(140deg, rgba(255, 210, 232, 0.8) 0%, rgba(189, 236, 255, 0.7) 100%);
+  border-radius: 24px;
   margin-bottom: 40px;
+  box-shadow: 0 18px 36px rgba(255, 121, 168, 0.18);
 }
 
 .hero-title {
   font-size: 3rem;
   margin: 0 0 12px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff79a8 0%, #7cc8ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -23,7 +24,7 @@
 
 .hero-subtitle {
   font-size: 1.25rem;
-  color: #666;
+  color: #5b5b5b;
   margin: 0;
 }
 
@@ -41,23 +42,23 @@
 .section-header h2 {
   font-size: 1.75rem;
   margin: 0;
-  color: #1a1a1a;
+  color: #2a2a2a;
 }
 
 .refresh-btn {
   background: white;
-  border: 2px solid #2196F3;
-  color: #2196F3;
+  border: 2px solid #ff79a8;
+  color: #ff4b8a;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
 }
 
 .refresh-btn:hover {
-  background: #2196F3;
-  color: white;
+  background: #ff79a8;
+  color: #2a1b26;
   transform: translateY(-2px);
 }
 
@@ -76,8 +77,8 @@
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #2196F3;
+  border: 4px solid rgba(255, 121, 168, 0.2);
+  border-top: 4px solid #ff79a8;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 20px;
@@ -89,31 +90,32 @@
 }
 
 .error-message {
-  color: #d32f2f;
+  color: #e05673;
   font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
 .retry-btn {
-  background: #2196F3;
-  color: white;
+  background: linear-gradient(135deg, #ff79a8, #cdb8ff);
+  color: #2a1b26;
   border: none;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.2s;
+  box-shadow: 0 12px 24px rgba(255, 121, 168, 0.2);
 }
 
 .retry-btn:hover {
-  background: #1976D2;
+  background: linear-gradient(135deg, #ff4b8a, #cdb8ff);
   transform: translateY(-2px);
 }
 
 .no-resorts {
   text-align: center;
-  color: #666;
+  color: #6b6b6b;
   font-size: 1.1rem;
   padding: 40px;
   grid-column: 1 / -1;

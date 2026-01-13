@@ -21,16 +21,18 @@
 .country-select {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border: 2px solid rgba(255, 121, 168, 0.3);
+  border-radius: 16px;
   font-size: 1rem;
   transition: border-color 0.2s;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .search-input:focus,
 .country-select:focus {
   outline: none;
-  border-color: #2196F3;
+  border-color: #ff79a8;
+  box-shadow: 0 8px 18px rgba(255, 121, 168, 0.18);
 }
 
 .country-select {
@@ -39,7 +41,7 @@
 
 .results-info {
   margin-bottom: 16px;
-  color: #666;
+  color: #6b6b6b;
   font-size: 0.95rem;
 }
 
@@ -51,7 +53,7 @@
 
 .no-resorts {
   text-align: center;
-  color: #666;
+  color: #6b6b6b;
   font-size: 1.1rem;
   padding: 40px;
   grid-column: 1 / -1;

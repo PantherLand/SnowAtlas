@@ -13,7 +13,8 @@
     "nearbyTitle": "附近的滑雪场",
     "popularTitle": "热门滑雪场",
     "loading": "加载中...",
-    "error": "加载雪场失败"
+    "error": "加载雪场失败",
+    "empty": "暂无雪场数据"
   },
   "resort": {
     "elevation": "海拔",
@@ -23,7 +24,8 @@
     "addToWatchlist": "加入监控",
     "removeFromWatchlist": "移除监控",
     "viewDetails": "查看详情",
-    "inWatchlist": "已监控"
+    "inWatchlist": "已监控",
+    "notFound": "未找到该雪场"
   },
   "weather": {
     "current": "当前天气",
@@ -35,14 +37,18 @@
     "windSpeed": "风速",
     "conditions": "天气状况",
     "snowQuality": "雪质",
-    "snowyDays": "降雪天数",
-    "totalSnow": "预计总降雪量",
+    "snowyDays": "过去7天降雪天数",
+    "totalSnow": "过去7天降雪量",
+    "noSnow": "过去7天无降雪",
+    "freshPowder": "刚下大雪",
+    "powderAlert": "粉雪热区",
+    "powderForecast": "粉雪预告",
     "lastUpdate": "最后更新",
     "quality": {
       "powder": "粉雪",
       "good": "良好",
-      "wet": "湿雪",
-      "slushy": "融雪",
+      "hard": "硬雪",
+      "icy": "湿雪带冰",
       "unknown": "未知"
     }
   },
@@ -52,6 +58,11 @@
     "emptyHint": "从首页或雪场列表添加滑雪场",
     "snowAlert": "降雪提醒",
     "weatherUpdate": "天气更新"
+  },
+  "resorts": {
+    "count": "{{count}} 个雪场",
+    "allCountries": "所有国家",
+    "empty": "暂无雪场数据"
   },
   "units": {
     "celsius": "°C",
@@ -82,6 +93,8 @@
     "search": "搜索",
     "filter": "筛选",
     "sort": "排序",
-    "refresh": "刷新"
+    "refresh": "刷新",
+    "days": "天",
+    "back": "返回"
   }
 }

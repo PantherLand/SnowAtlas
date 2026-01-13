@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { resortAPI } from '../services/api';
 import ResortCard from '../components/ResortCard';
+import withTimeout from '../utils/withTimeout';
 import './Resorts.css';
 
 const Resorts = () => {
@@ -12,31 +13,13 @@ const Resorts = () => {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('all');
-  const [refreshKey, setRefreshKey] = useState(0);
+  // refreshKey removed - no usage
 
   useEffect(() => {
     loadResorts();
   }, []);
 
-  useEffect(() => {
-    filterResorts();
-  }, [searchTerm, selectedCountry, resorts]);
-
-  const loadResorts = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await resortAPI.getAll();
-      setResorts(response.data || []);
-    } catch (err) {
-      setError(err.message);
-      console.error('Error loading resorts:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const filterResorts = () => {
+  const filterResorts = useCallback(() => {
     let filtered = [...resorts];
 
     // Filter by country
@@ -56,6 +39,24 @@ const Resorts = () => {
     }
 
     setFilteredResorts(filtered);
+  }, [resorts, searchTerm, selectedCountry]);
+
+  useEffect(() => {
+    filterResorts();
+  }, [filterResorts]);
+
+  const loadResorts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await withTimeout(resortAPI.getAll());
+      setResorts(response.data || []);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error loading resorts:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getUniqueCountries = () => {
@@ -71,9 +72,7 @@ const Resorts = () => {
     return unique.sort((a, b) => a.name.localeCompare(b.name));
   };
 
-  const handleWatchlistChange = () => {
-    setRefreshKey(prev => prev + 1);
-  };
+  const handleWatchlistChange = () => {};
 
   if (loading) {
     return (
@@ -120,7 +119,7 @@ const Resorts = () => {
             onChange={(e) => setSelectedCountry(e.target.value)}
             className="country-select"
           >
-            <option value="all">{t('common.filter')} - All Countries</option>
+            <option value="all">{t('common.filter')} - {t('resorts.allCountries')}</option>
             {getUniqueCountries().map(country => (
               <option key={country.code} value={country.code}>
                 {country.name}
@@ -131,12 +130,12 @@ const Resorts = () => {
       </div>
 
       <div className="results-info">
-        {filteredResorts.length} {filteredResorts.length === 1 ? 'resort' : 'resorts'}
+        {t('resorts.count', { count: filteredResorts.length })}
       </div>
 
       <div className="resorts-grid">
         {filteredResorts.length === 0 ? (
-          <p className="no-resorts">No resorts found</p>
+          <p className="no-resorts">{t('resorts.empty')}</p>
         ) : (
           filteredResorts.map((resort) => (
             <ResortCard

@@ -10,9 +10,9 @@ function getLocationFromIP(ip) {
   // Handle localhost/development
   if (ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1') {
     return {
-      country: 'US',
+      country: 'CN',
       city: 'Development',
-      ll: [39.8283, -98.5795] // Geographic center of US
+      ll: [39.9042, 116.4074] // Beijing
     };
   }
 
@@ -48,6 +48,31 @@ function toRad(degrees) {
   return degrees * (Math.PI / 180);
 }
 
+function attachDistance(resorts, ip) {
+  const location = getLocationFromIP(ip);
+  if (!location || !location.ll) {
+    return resorts.map(resort => ({
+      ...resort,
+      distance: null
+    }));
+  }
+
+  const [userLat, userLon] = location.ll;
+  return resorts.map(resort => {
+    const distance = calculateDistance(
+      userLat,
+      userLon,
+      resort.coordinates.lat,
+      resort.coordinates.lon
+    );
+
+    return {
+      ...resort,
+      distance: Math.round(distance)
+    };
+  });
+}
+
 /**
  * Find nearest ski resorts to user's location
  * @param {string} ip - User's IP address
@@ -71,19 +96,7 @@ function getNearestResorts(ip, limit = 5) {
   const [userLat, userLon] = location.ll;
 
   // Calculate distance to each resort
-  const resortsWithDistance = skiResorts.map(resort => {
-    const distance = calculateDistance(
-      userLat,
-      userLon,
-      resort.coordinates.lat,
-      resort.coordinates.lon
-    );
-
-    return {
-      ...resort,
-      distance: Math.round(distance)
-    };
-  });
+  const resortsWithDistance = attachDistance(skiResorts, ip);
 
   // Sort by distance and return top results
   // Also consider popularity for nearby resorts
@@ -125,11 +138,34 @@ function getAllResorts() {
   return skiResorts;
 }
 
+/**
+ * Get resorts for user's country, sorted by distance
+ * @param {string} ip - User's IP address
+ * @returns {Array} Resorts in same country with distance
+ */
+function getCountryResortsByDistance(ip) {
+  const location = getLocationFromIP(ip);
+  if (!location || !location.country) {
+    return getNearestResorts(ip, 10);
+  }
+
+  const countryResorts = getResortsByCountry(location.country);
+  const withDistance = attachDistance(countryResorts, ip);
+
+  return withDistance.sort((a, b) => {
+    if (a.distance === null) return 1;
+    if (b.distance === null) return -1;
+    return a.distance - b.distance;
+  });
+}
+
 module.exports = {
   getLocationFromIP,
   getNearestResorts,
   getResortsByCountry,
   getResortById,
   getAllResorts,
-  calculateDistance
+  calculateDistance,
+  attachDistance,
+  getCountryResortsByDistance
 };

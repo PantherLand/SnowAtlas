@@ -1,8 +1,8 @@
 .app-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 16px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffd4e5 0%, #cfeeff 100%);
+  color: #2a2a2a;
+  padding: 18px 0;
+  box-shadow: 0 8px 24px rgba(255, 121, 168, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -23,7 +23,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: white;
+  color: #2a2a2a;
   font-size: 1.5rem;
   font-weight: 700;
   transition: transform 0.2s;
@@ -49,28 +49,28 @@
 }
 
 .nav-link {
-  color: white;
+  color: #2a2a2a;
   text-decoration: none;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 999px;
   transition: background-color 0.2s;
   font-weight: 500;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .lang-toggle {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  color: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
@@ -78,7 +78,7 @@
 }
 
 .lang-toggle:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: white;
   transform: translateY(-1px);
 }
 

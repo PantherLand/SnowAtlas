@@ -11,6 +11,9 @@ const WeatherDisplay = ({ weatherData }) => {
   }
 
   const { current, forecast, snowConditions } = weatherData;
+  const safeCurrent = current || {};
+  const safeSnow = snowConditions || {};
+  const safeForecast = Array.isArray(forecast) ? forecast : [];
 
   const formatDate = (timestamp) => {
     return format(fromUnixTime(timestamp), 'MMM dd');
@@ -27,22 +30,30 @@ const WeatherDisplay = ({ weatherData }) => {
         <h3>{t('weather.current')}</h3>
         <div className="current-weather-content">
           <div className="current-temp-large">
-            {Math.round(current.temp)}{t('units.celsius')}
+            {safeCurrent.temp === null || safeCurrent.temp === undefined
+              ? '--'
+              : `${Math.round(safeCurrent.temp)}${t('units.celsius')}`}
           </div>
           <div className="current-details">
-            <div className="weather-condition">{current.weather.description}</div>
+            <div className="weather-condition">{safeCurrent.weather?.description || '--'}</div>
             <div className="weather-stat">
               <span className="stat-label">{t('weather.humidity')}:</span>
-              <span className="stat-value">{current.humidity}%</span>
+              <span className="stat-value">
+                {safeCurrent.humidity === null || safeCurrent.humidity === undefined ? '--' : `${safeCurrent.humidity}%`}
+              </span>
             </div>
             <div className="weather-stat">
               <span className="stat-label">{t('weather.windSpeed')}:</span>
-              <span className="stat-value">{Math.round(current.wind_speed)} {t('units.kmh')}</span>
+              <span className="stat-value">
+                {safeCurrent.wind_speed === null || safeCurrent.wind_speed === undefined
+                  ? '--'
+                  : `${Math.round(safeCurrent.wind_speed)} ${t('units.kmh')}`}
+              </span>
             </div>
-            {current.snow_1h > 0 && (
+            {safeCurrent.snow_1h > 0 && (
               <div className="weather-stat snow-stat">
                 <span className="stat-label">❄️ {t('weather.snowfall')}:</span>
-                <span className="stat-value">{current.snow_1h} {t('units.cm')}</span>
+                <span className="stat-value">{safeCurrent.snow_1h} {t('units.cm')}</span>
               </div>
             )}
           </div>
@@ -54,15 +65,21 @@ const WeatherDisplay = ({ weatherData }) => {
         <h3>{t('weather.snowQuality')}</h3>
         <div className="snow-stats">
           <div className="snow-stat-card">
-            <div className="snow-stat-value">{snowConditions.totalSnowForecast} {t('units.cm')}</div>
+            <div className="snow-stat-value">
+              {safeSnow.totalSnowForecast === undefined ? '--' : safeSnow.totalSnowForecast} {t('units.cm')}
+            </div>
             <div className="snow-stat-label">{t('weather.totalSnow')}</div>
           </div>
           <div className="snow-stat-card">
-            <div className="snow-stat-value">{snowConditions.snowyDays}</div>
+            <div className="snow-stat-value">
+              {safeSnow.snowyDays === undefined ? '--' : safeSnow.snowyDays}
+            </div>
             <div className="snow-stat-label">{t('weather.snowyDays')}</div>
           </div>
           <div className="snow-stat-card">
-            <div className="snow-stat-value">{t(`weather.quality.${snowConditions.quality}`)}</div>
+            <div className="snow-stat-value">
+              {safeSnow.quality ? t(`weather.quality.${safeSnow.quality}`) : '--'}
+            </div>
             <div className="snow-stat-label">{t('weather.snowQuality')}</div>
           </div>
         </div>
@@ -72,15 +89,15 @@ const WeatherDisplay = ({ weatherData }) => {
       <div className="weather-section forecast">
         <h3>{t('weather.forecast')}</h3>
         <div className="forecast-grid">
-          {forecast.map((day, index) => (
+          {safeForecast.map((day, index) => (
             <div key={day.date} className="forecast-day">
               <div className="forecast-date">
                 {index === 0 ? t('time.today') : formatDay(day.date)}
               </div>
-              <div className="forecast-icon">{day.weather.main === 'Snow' ? '❄️' : '☁️'}</div>
+              <div className="forecast-icon">{day.weather?.main === 'Snow' ? '❄️' : '☁️'}</div>
               <div className="forecast-temp">
-                <span className="temp-max">{Math.round(day.temp.max)}°</span>
-                <span className="temp-min">{Math.round(day.temp.min)}°</span>
+                <span className="temp-max">{day.temp?.max === undefined ? '--' : Math.round(day.temp.max)}°</span>
+                <span className="temp-min">{day.temp?.min === undefined ? '--' : Math.round(day.temp.min)}°</span>
               </div>
               {day.snow > 0 && (
                 <div className="forecast-snow">
