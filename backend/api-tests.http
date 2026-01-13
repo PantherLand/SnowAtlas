@@ -4,7 +4,7 @@
 # 或者使用 curl 命令行工具
 ###
 
-@baseUrl = http://localhost:5000
+@baseUrl = http://localhost:5001
 @apiUrl = {{baseUrl}}/api
 
 ###############################################

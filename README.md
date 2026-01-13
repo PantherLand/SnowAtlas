@@ -61,7 +61,7 @@ npm install
 
 # Copy and configure environment variables
 cp .env.example .env
-# Configure API URL if needed (defaults to http://localhost:5000/api)
+# Configure API URL if needed (defaults to http://localhost:5001/api)
 ```
 
 ## 🏃 Running the Application
@@ -82,7 +82,7 @@ npm start
 
 The app will be available at:
 - Frontend: http://localhost:3000
-- Backend: http://localhost:5000
+- Backend: http://localhost:5001
 
 ### Production Build
 
@@ -188,7 +188,7 @@ Switch languages using the language toggle in the header.
 
 ### Backend (.env)
 ```
-PORT=5000
+PORT=5001
 NODE_ENV=development
 FRONTEND_URL=http://localhost:3000
 ```
@@ -196,7 +196,7 @@ FRONTEND_URL=http://localhost:3000
 
 ### Frontend (.env)
 ```
-REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_URL=http://localhost:5001/api
 ```
 
 ## 🔧 Development
@@ -302,16 +302,16 @@ npm run test:api
 **Using cURL**:
 ```bash
 # Test health endpoint
-curl http://localhost:5000/health
+curl http://localhost:5001/health
 
 # Get all resorts
-curl http://localhost:5000/api/resorts
+curl http://localhost:5001/api/resorts
 
 # Get weather for Niseko
-curl http://localhost:5000/api/weather/niseko
+curl http://localhost:5001/api/weather/niseko
 
 # Batch weather request
-curl -X POST http://localhost:5000/api/weather/batch \
+curl -X POST http://localhost:5001/api/weather/batch \
   -H "Content-Type: application/json" \
   -d '{"resortIds":["niseko","whistler-blackcomb"]}'
 ```

@@ -4,7 +4,7 @@
 
 ## 基础信息
 
-- **Base URL**: `http://localhost:5000`
+- **Base URL**: `http://localhost:5001`
 - **API Version**: 1.0.0
 - **Content-Type**: `application/json`
 - **Authentication**: 无需认证
@@ -540,22 +540,22 @@ Content-Type: application/json
 
 ```bash
 # 获取所有雪场
-curl http://localhost:5000/api/resorts
+curl http://localhost:5001/api/resorts
 
 # 获取附近雪场
-curl http://localhost:5000/api/resorts/nearby?limit=3
+curl http://localhost:5001/api/resorts/nearby?limit=3
 
 # 获取指定雪场
-curl http://localhost:5000/api/resorts/niseko
+curl http://localhost:5001/api/resorts/niseko
 
 # 按国家获取
-curl http://localhost:5000/api/resorts/country/JP
+curl http://localhost:5001/api/resorts/country/JP
 
 # 获取天气
-curl http://localhost:5000/api/weather/niseko
+curl http://localhost:5001/api/weather/niseko
 
 # 批量获取天气
-curl -X POST http://localhost:5000/api/weather/batch \
+curl -X POST http://localhost:5001/api/weather/batch \
   -H "Content-Type: application/json" \
   -d '{"resortIds":["niseko","whistler-blackcomb"]}'
 ```
@@ -565,14 +565,14 @@ curl -X POST http://localhost:5000/api/weather/batch \
 ```javascript
 // 使用 fetch API
 const getWeather = async (resortId) => {
-  const response = await fetch(`http://localhost:5000/api/weather/${resortId}`);
+  const response = await fetch(`http://localhost:5001/api/weather/${resortId}`);
   const data = await response.json();
   return data;
 };
 
 // 批量获取
 const getBatchWeather = async (resortIds) => {
-  const response = await fetch('http://localhost:5000/api/weather/batch', {
+  const response = await fetch('http://localhost:5001/api/weather/batch', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
