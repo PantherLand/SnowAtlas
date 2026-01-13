@@ -1,0 +1,124 @@
+.resort-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.resort-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.resort-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.resort-name {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.resort-location {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.watchlist-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.2s;
+  padding: 4px 8px;
+}
+
+.watchlist-btn:hover {
+  color: #ffc107;
+}
+
+.watchlist-btn.in-watchlist {
+  color: #ffc107;
+}
+
+.resort-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.detail-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #1a1a1a;
+}
+
+.weather-summary {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.current-temp {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2196F3;
+}
+
+.weather-icon {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.snow-forecast {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2196F3;
+}
+
+.forecast-label {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .resort-card {
+    padding: 16px;
+  }
+
+  .resort-name {
+    font-size: 1.1rem;
+  }
+
+  .weather-summary {
+    flex-wrap: wrap;
+  }
+}

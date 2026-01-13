@@ -1,0 +1,87 @@
+{
+  "app": {
+    "title": "雪境图谱",
+    "subtitle": "全球滑雪场监控"
+  },
+  "nav": {
+    "home": "首页",
+    "resorts": "所有雪场",
+    "watchlist": "我的监控",
+    "about": "关于"
+  },
+  "home": {
+    "nearbyTitle": "附近的滑雪场",
+    "popularTitle": "热门滑雪场",
+    "loading": "加载中...",
+    "error": "加载雪场失败"
+  },
+  "resort": {
+    "elevation": "海拔",
+    "base": "基地",
+    "summit": "顶峰",
+    "distance": "距离",
+    "addToWatchlist": "加入监控",
+    "removeFromWatchlist": "移除监控",
+    "viewDetails": "查看详情",
+    "inWatchlist": "已监控"
+  },
+  "weather": {
+    "current": "当前天气",
+    "forecast": "未来7天预报",
+    "historical": "过去7天",
+    "temperature": "温度",
+    "snowfall": "降雪量",
+    "humidity": "湿度",
+    "windSpeed": "风速",
+    "conditions": "天气状况",
+    "snowQuality": "雪质",
+    "snowyDays": "降雪天数",
+    "totalSnow": "预计总降雪量",
+    "lastUpdate": "最后更新",
+    "quality": {
+      "powder": "粉雪",
+      "good": "良好",
+      "wet": "湿雪",
+      "slushy": "融雪",
+      "unknown": "未知"
+    }
+  },
+  "watchlist": {
+    "title": "我的监控列表",
+    "empty": "监控列表为空",
+    "emptyHint": "从首页或雪场列表添加滑雪场",
+    "snowAlert": "降雪提醒",
+    "weatherUpdate": "天气更新"
+  },
+  "units": {
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "meters": "米",
+    "feet": "英尺",
+    "kmh": "公里/小时",
+    "mph": "英里/小时",
+    "km": "公里",
+    "miles": "英里",
+    "cm": "厘米",
+    "inches": "英寸"
+  },
+  "time": {
+    "today": "今天",
+    "tomorrow": "明天",
+    "yesterday": "昨天",
+    "daysAgo": "{{count}}天前",
+    "inDays": "{{count}}天后"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "retry": "重试",
+    "close": "关闭",
+    "save": "保存",
+    "cancel": "取消",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "refresh": "刷新"
+  }
+}
