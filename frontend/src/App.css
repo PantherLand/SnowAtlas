@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: light;
+  --ink: #2a2a2a;
+  --muted: #6b6b6b;
+  --bubble: #ffffff;
+  --soft-blue: #aee6ff;
+  --soft-pink: #ffc7df;
+  --soft-mint: #d5f5d4;
+  --soft-lilac: #cdb8ff;
+  --accent: #ff79a8;
+  --accent-deep: #ff4b8a;
+  --shadow: rgba(255, 121, 168, 0.18);
+}
+
+body {
+  background-color: #fef6fb;
+  background-image:
+    radial-gradient(140px 140px at 5% 20%, rgba(255, 199, 223, 0.6), transparent),
+    radial-gradient(180px 180px at 95% 10%, rgba(174, 230, 255, 0.7), transparent),
+    radial-gradient(220px 220px at 70% 90%, rgba(213, 245, 212, 0.7), transparent);
+  color: var(--ink);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image:
+    radial-gradient(220px 220px at 15% 90%, rgba(205, 184, 255, 0.4), transparent),
+    radial-gradient(180px 180px at 85% 60%, rgba(255, 214, 181, 0.45), transparent);
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.app-footer {
+  background: linear-gradient(120deg, #ffd4e5, #cfeeff);
+  color: #3a3a3a;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Utility Classes */
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 121, 168, 0.2);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: #e05673;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.retry-btn,
+.refresh-btn {
+  background: linear-gradient(135deg, var(--accent), var(--soft-lilac));
+  color: #2a1b26;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 12px 24px var(--shadow);
+}
+
+.retry-btn:hover,
+.refresh-btn:hover {
+  background: linear-gradient(135deg, var(--accent-deep), var(--soft-lilac));
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
+}

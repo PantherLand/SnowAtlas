@@ -1,0 +1,188 @@
+.weather-display {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 252, 255, 0.95));
+  border-radius: 20px;
+  padding: 24px;
+  margin: 20px 0;
+  box-shadow: 0 18px 34px rgba(174, 230, 255, 0.35);
+  border: 2px solid rgba(174, 230, 255, 0.5);
+}
+
+.weather-section {
+  margin-bottom: 32px;
+}
+
+.weather-section:last-child {
+  margin-bottom: 0;
+}
+
+.weather-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  color: #2a2a2a;
+  font-weight: 600;
+}
+
+/* Current Weather */
+.current-weather-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.current-temp-large {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ff79a8;
+  line-height: 1;
+}
+
+.current-details {
+  flex: 1;
+}
+
+.weather-condition {
+  font-size: 1.25rem;
+  color: #2a2a2a;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.weather-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.stat-label {
+  color: #6b6b6b;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: #2a2a2a;
+  font-weight: 600;
+}
+
+.snow-stat {
+  color: #ff4b8a;
+  font-weight: 600;
+}
+
+/* Snow Conditions */
+.snow-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.snow-stat-card {
+  background: linear-gradient(135deg, #ffd4e5 0%, #cfeeff 100%);
+  color: #2a2a2a;
+  padding: 20px;
+  border-radius: 18px;
+  text-align: center;
+  border: 2px dashed rgba(255, 121, 168, 0.35);
+}
+
+.snow-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.snow-stat-label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Forecast */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.forecast-day {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: transform 0.2s;
+  border: 1px solid rgba(205, 184, 255, 0.35);
+}
+
+.forecast-day:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.forecast-date {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2a2a2a;
+  font-size: 0.9rem;
+}
+
+.forecast-icon {
+  font-size: 2rem;
+  margin: 8px 0;
+}
+
+.forecast-temp {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.temp-max {
+  font-weight: 700;
+  color: #2a2a2a;
+}
+
+.temp-min {
+  color: #6b6b6b;
+}
+
+.forecast-snow,
+.forecast-precipitation {
+  font-size: 0.8rem;
+  margin-top: 4px;
+  color: #ff4b8a;
+}
+
+.weather-loading {
+  text-align: center;
+  padding: 40px;
+  color: #6b6b6b;
+}
+
+@media (max-width: 768px) {
+  .weather-display {
+    padding: 16px;
+  }
+
+  .current-weather-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .current-temp-large {
+    font-size: 3rem;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+  }
+
+  .forecast-day {
+    padding: 12px 8px;
+  }
+
+  .snow-stats {
+    grid-template-columns: 1fr;
+  }
+}
