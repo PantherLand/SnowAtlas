@@ -1,0 +1,239 @@
+###
+# SnowAtlas API 测试文件
+# 使用方法：在VSCode中安装REST Client插件，然后点击"Send Request"运行测试
+# 或者使用 curl 命令行工具
+###
+
+@baseUrl = http://localhost:5000
+@apiUrl = {{baseUrl}}/api
+
+###############################################
+# 健康检查
+###############################################
+
+### 1. 服务器健康检查
+GET {{baseUrl}}/health
+Accept: application/json
+
+###############################################
+# 雪场相关接口
+###############################################
+
+### 2. 获取所有雪场
+GET {{apiUrl}}/resorts
+Accept: application/json
+
+### 3. 获取附近雪场（默认5个）
+GET {{apiUrl}}/resorts/nearby
+Accept: application/json
+
+### 4. 获取附近雪场（指定数量）
+GET {{apiUrl}}/resorts/nearby?limit=3
+Accept: application/json
+
+### 5. 获取指定雪场 - Niseko
+GET {{apiUrl}}/resorts/niseko
+Accept: application/json
+
+### 6. 获取指定雪场 - Whistler Blackcomb
+GET {{apiUrl}}/resorts/whistler-blackcomb
+Accept: application/json
+
+### 7. 获取指定雪场 - Chamonix
+GET {{apiUrl}}/resorts/chamonix
+Accept: application/json
+
+### 8. 获取不存在的雪场（404错误测试）
+GET {{apiUrl}}/resorts/invalid-resort-id
+Accept: application/json
+
+### 9. 获取日本的所有雪场
+GET {{apiUrl}}/resorts/country/JP
+Accept: application/json
+
+### 10. 获取美国的所有雪场
+GET {{apiUrl}}/resorts/country/US
+Accept: application/json
+
+### 11. 获取中国的所有雪场
+GET {{apiUrl}}/resorts/country/CN
+Accept: application/json
+
+### 12. 获取法国的所有雪场
+GET {{apiUrl}}/resorts/country/FR
+Accept: application/json
+
+### 13. 获取加拿大的所有雪场
+GET {{apiUrl}}/resorts/country/CA
+Accept: application/json
+
+###############################################
+# 天气相关接口
+###############################################
+
+### 14. 获取Niseko天气
+GET {{apiUrl}}/weather/niseko
+Accept: application/json
+
+### 15. 获取Whistler Blackcomb天气
+GET {{apiUrl}}/weather/whistler-blackcomb
+Accept: application/json
+
+### 16. 获取Chamonix天气
+GET {{apiUrl}}/weather/chamonix
+Accept: application/json
+
+### 17. 获取Vail天气
+GET {{apiUrl}}/weather/vail
+Accept: application/json
+
+### 18. 获取亚布力天气
+GET {{apiUrl}}/weather/yabuli
+Accept: application/json
+
+### 19. 获取不存在雪场的天气（404错误测试）
+GET {{apiUrl}}/weather/invalid-resort
+Accept: application/json
+
+### 20. 批量获取天气 - 3个雪场
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": ["niseko", "whistler-blackcomb", "chamonix"]
+}
+
+### 21. 批量获取天气 - 5个雪场
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": [
+    "niseko",
+    "whistler-blackcomb",
+    "chamonix",
+    "vail",
+    "yabuli"
+  ]
+}
+
+### 22. 批量获取天气 - 所有日本雪场
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": ["niseko", "hakuba"]
+}
+
+### 23. 批量获取天气 - 空数组测试（400错误）
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": []
+}
+
+### 24. 批量获取天气 - 超过10个雪场（400错误）
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": [
+    "niseko",
+    "hakuba",
+    "whistler-blackcomb",
+    "vail",
+    "aspen-snowmass",
+    "park-city",
+    "chamonix",
+    "zermatt",
+    "st-anton",
+    "val-thorens",
+    "cortina"
+  ]
+}
+
+### 25. 批量获取天气 - 无效请求体（400错误）
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "invalidField": "test"
+}
+
+###############################################
+# 性能测试场景
+###############################################
+
+### 26. 完整流程测试 - 获取附近雪场 -> 选择一个 -> 获取天气
+# 步骤1: 获取附近雪场
+GET {{apiUrl}}/resorts/nearby?limit=1
+
+###
+# 步骤2: 获取第一个雪场的详细信息（假设是vail）
+GET {{apiUrl}}/resorts/vail
+
+###
+# 步骤3: 获取该雪场的天气
+GET {{apiUrl}}/weather/vail
+
+###############################################
+# 错误处理测试
+###############################################
+
+### 27. 测试404 - 不存在的端点
+GET {{apiUrl}}/nonexistent-endpoint
+Accept: application/json
+
+### 28. 测试错误的HTTP方法
+DELETE {{apiUrl}}/resorts
+Accept: application/json
+
+###############################################
+# CORS测试（如果从前端访问）
+###############################################
+
+### 29. OPTIONS请求测试
+OPTIONS {{apiUrl}}/resorts
+Origin: http://localhost:3000
+
+###############################################
+# 数据完整性测试
+###############################################
+
+### 30. 验证雪场数据结构
+# @name getResorts
+GET {{apiUrl}}/resorts
+Accept: application/json
+
+###
+# 使用上面请求的响应进行后续测试
+@resortId = {{getResorts.response.body.$.data[0].id}}
+
+### 31. 使用动态提取的雪场ID获取天气
+GET {{apiUrl}}/weather/{{resortId}}
+Accept: application/json
+
+###############################################
+# 监控列表模拟测试
+###############################################
+
+### 32. 模拟用户添加3个雪场到监控列表并获取天气
+POST {{apiUrl}}/weather/batch
+Content-Type: application/json
+
+{
+  "resortIds": ["niseko", "chamonix", "zermatt"]
+}
+
+### 33. 模拟用户查看不同国家的雪场
+# 北美
+GET {{apiUrl}}/resorts/country/US
+
+###
+# 欧洲
+GET {{apiUrl}}/resorts/country/FR
+
+###
+# 亚洲
+GET {{apiUrl}}/resorts/country/JP

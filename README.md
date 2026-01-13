@@ -244,64 +244,94 @@ API Documentation: https://open-meteo.com/en/docs
 
 ### Backend API Endpoints
 
-The SnowAtlas backend provides a REST API with the following endpoints:
+The SnowAtlas backend provides a comprehensive REST API. For complete API documentation, see **[API.md](backend/API.md)**.
 
-#### Resorts API
+#### Quick Reference
 
-**Get All Resorts**
-```
-GET /api/resorts
-```
-Returns all 20+ ski resorts with details including name, location, coordinates, and elevation.
+**Resorts API**
+- `GET /api/resorts` - Get all ski resorts
+- `GET /api/resorts/nearby?limit=5` - Get nearby resorts (IP-based)
+- `GET /api/resorts/:id` - Get specific resort details
+- `GET /api/resorts/country/:countryCode` - Get resorts by country
 
-**Get Nearby Resorts**
-```
-GET /api/resorts/nearby?limit=5
-```
-Returns ski resorts near the user's location (based on IP geolocation).
-- Query params: `limit` (optional, default: 5)
+**Weather API**
+- `GET /api/weather/:resortId` - Get weather for a resort
+- `POST /api/weather/batch` - Batch get weather for multiple resorts
 
-**Get Resort by ID**
-```
-GET /api/resorts/:id
-```
-Returns details for a specific resort.
-- URL params: `id` (e.g., "niseko", "whistler-blackcomb")
+**Health Check**
+- `GET /health` - Server health status
 
-**Get Resorts by Country**
-```
-GET /api/resorts/country/:countryCode
-```
-Returns all resorts in a specific country.
-- URL params: `countryCode` (e.g., "US", "JP", "FR")
+📖 **[View Full API Documentation](backend/API.md)** - Includes detailed request/response formats, error codes, and usage examples.
 
-#### Weather API
+### API Testing
 
-**Get Weather for Resort**
-```
-GET /api/weather/:resortId
-```
-Returns complete weather data for a resort including:
-- Current weather (temperature, humidity, wind, snowfall)
-- 7-day forecast (daily temperatures, snow, precipitation probability)
-- Snow conditions summary (total snowfall, snowy days, snow quality)
+SnowAtlas includes comprehensive API tests to ensure reliability and correctness.
 
-**Batch Weather Request**
-```
-POST /api/weather/batch
-Content-Type: application/json
+#### Running Tests
 
-{
-  "resortIds": ["niseko", "whistler-blackcomb", "chamonix"]
-}
+**Install test dependencies** (first time only):
+```bash
+cd backend
+npm install
 ```
-Returns weather data for multiple resorts (max 10 per request).
 
-#### Health Check
+**Run all tests with coverage**:
+```bash
+npm test
 ```
-GET /health
+
+**Run tests in watch mode** (for development):
+```bash
+npm run test:watch
 ```
-Returns server status and timestamp.
+
+**Run only API tests**:
+```bash
+npm run test:api
+```
+
+#### Manual API Testing
+
+**Using REST Client (VSCode)**:
+
+1. Install the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension
+2. Open `backend/api-tests.http`
+3. Click "Send Request" above any test to execute it
+4. View responses inline
+
+**Using cURL**:
+```bash
+# Test health endpoint
+curl http://localhost:5000/health
+
+# Get all resorts
+curl http://localhost:5000/api/resorts
+
+# Get weather for Niseko
+curl http://localhost:5000/api/weather/niseko
+
+# Batch weather request
+curl -X POST http://localhost:5000/api/weather/batch \
+  -H "Content-Type: application/json" \
+  -d '{"resortIds":["niseko","whistler-blackcomb"]}'
+```
+
+#### Test Files
+
+- `backend/tests/api.test.js` - Automated Jest/Supertest tests
+- `backend/api-tests.http` - Manual HTTP tests for REST Client
+
+#### Test Coverage
+
+The test suite covers:
+- ✅ All API endpoints (resorts, weather, health)
+- ✅ Error handling and validation
+- ✅ Data integrity checks
+- ✅ CORS configuration
+- ✅ Performance benchmarks
+- ✅ Integration test scenarios
+
+Run `npm test` to see detailed coverage report.
 
 ## 🚧 Future Enhancements
 
