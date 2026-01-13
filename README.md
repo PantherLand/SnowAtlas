@@ -333,6 +333,135 @@ The test suite covers:
 
 Run `npm test` to see detailed coverage report.
 
+## 🔄 CI/CD and Automation
+
+SnowAtlas includes comprehensive CI/CD workflows powered by GitHub Actions to ensure code quality and reliability.
+
+### Automated Workflows
+
+#### 1. PR Checks Workflow
+
+Runs automatically on every pull request to the main branch:
+
+**Jobs:**
+- **Backend Tests** - Runs on Node.js 18.x and 20.x
+  - Installs dependencies
+  - Executes test suite with coverage
+  - Uploads coverage reports to Codecov
+  - Posts test results as PR comment
+
+- **Frontend Build** - Runs on Node.js 18.x and 20.x
+  - Installs dependencies
+  - Builds production bundle
+  - Reports build size
+  - Posts build results as PR comment
+
+- **Code Quality Checks**
+  - Validates backend dependencies
+  - Validates frontend dependencies
+  - Ensures clean installation
+
+- **Auto Label** - Automatically labels PRs based on changed files
+  - `backend` - Changes in backend/
+  - `frontend` - Changes in frontend/
+  - `tests` - Changes to test files
+  - `documentation` - Changes to .md files
+  - `ci/cd` - Changes to GitHub workflows
+
+- **PR Summary** - Posts comprehensive status summary
+  - Shows results of all checks
+  - Provides at-a-glance PR status
+
+**Configuration:** `.github/workflows/pr-checks.yml`
+
+#### 2. CI Workflow
+
+Runs on every push to any branch:
+
+**Jobs:**
+- **Backend Tests** - Full test suite execution
+- **Frontend Build** - Build verification
+- **Integration Tests** - API endpoint testing
+- **Status Check** - Overall CI status summary
+
+**Manual Trigger:** Can be triggered manually via GitHub Actions UI
+
+**Configuration:** `.github/workflows/ci.yml`
+
+### Pull Request Template
+
+When creating a pull request, you'll see a structured template that includes:
+
+- Description and related issue linking
+- Type of change checklist
+- Testing checklist (backend, frontend, integration)
+- Internationalization checklist
+- Code quality checklist
+- Screenshots section for UI changes
+
+**Location:** `.github/PULL_REQUEST_TEMPLATE.md`
+
+### CI/CD Status Badges
+
+Add these badges to your fork's README to display CI status:
+
+```markdown
+![CI Status](https://github.com/YOUR_USERNAME/SnowAtlas/workflows/CI/badge.svg)
+![PR Checks](https://github.com/YOUR_USERNAME/SnowAtlas/workflows/PR%20Checks/badge.svg)
+```
+
+### Setting Up CI/CD in Your Fork
+
+1. **Fork the repository** to your GitHub account
+2. **Enable GitHub Actions** in your fork's settings
+3. **Push to any branch** - CI workflow runs automatically
+4. **Create a pull request** - PR checks workflow runs automatically
+5. **Review automated comments** - Test results and build info posted to PRs
+
+### Local Pre-commit Checks
+
+Before pushing code, run these checks locally:
+
+```bash
+# Backend tests
+cd backend
+npm test
+
+# Frontend build
+cd frontend
+npm run build
+
+# All checks
+cd backend && npm test && cd ../frontend && npm run build
+```
+
+### Workflow Triggers
+
+**CI Workflow** triggers on:
+- Push to any branch
+- Manual workflow dispatch
+
+**PR Checks Workflow** triggers on:
+- Pull request opened
+- Pull request synchronized (new commits pushed)
+- Pull request reopened
+
+### Troubleshooting CI/CD
+
+**Tests failing in CI but passing locally?**
+- Ensure all dependencies are committed
+- Check Node.js version compatibility (CI runs on 18.x and 20.x)
+- Verify environment variables are not hardcoded
+
+**Frontend build failing?**
+- Check for build warnings in local build
+- Ensure `CI=true` environment variable works locally
+- Review package.json scripts
+
+**Coverage reports not uploading?**
+- Codecov integration requires repository setup
+- Check GitHub Actions secrets configuration
+
 ## 🚧 Future Enhancements
 
 - [ ] Historical weather data (past 7 days)
