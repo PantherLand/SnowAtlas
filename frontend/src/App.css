@@ -51,6 +51,7 @@ body {
   color: var(--ink);
   text-align: center;
   padding: 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   margin-top: auto;
 }
 

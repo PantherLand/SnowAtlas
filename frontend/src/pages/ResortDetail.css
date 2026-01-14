@@ -6,7 +6,7 @@
 
 .detail-header {
   position: fixed;
-  top: 154px;
+  top: calc(154px + env(safe-area-inset-top, 0px));
   left: 50%;
   transform: translateX(-50%);
   width: min(1200px, calc(100% - 40px));
