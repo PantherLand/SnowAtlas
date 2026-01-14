@@ -10,8 +10,14 @@
 
 const request = require('supertest');
 const app = require('../server');
+const { pool } = require('../db');
 
 describe('SnowAtlas Backend API Tests', () => {
+  afterAll(async () => {
+    if (pool) {
+      await pool.end();
+    }
+  });
 
   // ========================================
   // 健康检查测试

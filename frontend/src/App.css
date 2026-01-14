@@ -6,24 +6,24 @@
 
 :root {
   color-scheme: light;
-  --ink: #2a2a2a;
-  --muted: #6b6b6b;
+  --ink: #26323b;
+  --muted: #6a7a86;
   --bubble: #ffffff;
-  --soft-blue: #aee6ff;
-  --soft-pink: #ffc7df;
-  --soft-mint: #d5f5d4;
-  --soft-lilac: #cdb8ff;
-  --accent: #ff79a8;
-  --accent-deep: #ff4b8a;
-  --shadow: rgba(255, 121, 168, 0.18);
+  --soft-blue: #bfe7ff;
+  --soft-pink: #ffd6c7;
+  --soft-mint: #d8f7e1;
+  --soft-lilac: #d9ccff;
+  --accent: #ff9a7a;
+  --accent-deep: #ff7a59;
+  --shadow: rgba(255, 154, 122, 0.2);
 }
 
 body {
-  background-color: #fef6fb;
+  background-color: #f7fbff;
   background-image:
-    radial-gradient(140px 140px at 5% 20%, rgba(255, 199, 223, 0.6), transparent),
-    radial-gradient(180px 180px at 95% 10%, rgba(174, 230, 255, 0.7), transparent),
-    radial-gradient(220px 220px at 70% 90%, rgba(213, 245, 212, 0.7), transparent);
+    radial-gradient(140px 140px at 5% 20%, rgba(255, 214, 199, 0.6), transparent),
+    radial-gradient(180px 180px at 95% 10%, rgba(191, 231, 255, 0.7), transparent),
+    radial-gradient(220px 220px at 70% 90%, rgba(216, 247, 225, 0.7), transparent);
   color: var(--ink);
 }
 
@@ -32,8 +32,8 @@ body {
   display: flex;
   flex-direction: column;
   background-image:
-    radial-gradient(220px 220px at 15% 90%, rgba(205, 184, 255, 0.4), transparent),
-    radial-gradient(180px 180px at 85% 60%, rgba(255, 214, 181, 0.45), transparent);
+    radial-gradient(220px 220px at 15% 90%, rgba(217, 204, 255, 0.35), transparent),
+    radial-gradient(180px 180px at 85% 60%, rgba(255, 231, 206, 0.45), transparent);
 }
 
 .main-content {
@@ -43,8 +43,8 @@ body {
 }
 
 .app-footer {
-  background: linear-gradient(120deg, #ffd4e5, #cfeeff);
-  color: #3a3a3a;
+  background: linear-gradient(120deg, #ffe6da, #d6f0ff);
+  color: var(--ink);
   text-align: center;
   padding: 20px;
   margin-top: auto;
@@ -65,7 +65,7 @@ body {
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid rgba(255, 121, 168, 0.2);
+  border: 4px solid rgba(255, 154, 122, 0.2);
   border-top: 4px solid var(--accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -78,7 +78,7 @@ body {
 }
 
 .error-message {
-  color: #e05673;
+  color: #d9595f;
   font-size: 1.1rem;
   margin-bottom: 20px;
 }

@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { resortAPI } from '../services/api';
+import { resortAPI, weatherAPI } from '../services/api';
 import ResortCard from '../components/ResortCard';
 import withTimeout from '../utils/withTimeout';
 import './Resorts.css';
@@ -9,11 +9,18 @@ const Resorts = () => {
   const { t } = useTranslation();
   const [resorts, setResorts] = useState([]);
   const [filteredResorts, setFilteredResorts] = useState([]);
+  const [weatherMap, setWeatherMap] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('all');
-  // refreshKey removed - no usage
+  const observerRef = useRef(null);
+  const loadingIdsRef = useRef(new Set());
+  const cardRefs = useRef({});
+  const loadMoreRef = useRef(null);
+  const [page, setPage] = useState(1);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const pageSize = 10;
 
   useEffect(() => {
     loadResorts();
@@ -45,6 +52,84 @@ const Resorts = () => {
     filterResorts();
   }, [filterResorts]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [searchTerm, selectedCountry]);
+
+  const loadWeatherForResort = useCallback(async (resortId) => {
+    if (weatherMap[resortId] || loadingIdsRef.current.has(resortId)) return;
+    loadingIdsRef.current.add(resortId);
+    try {
+      const response = await withTimeout(weatherAPI.getByResort(resortId), 15000);
+      if (response?.data) {
+        setWeatherMap((prev) => ({
+          ...prev,
+          [resortId]: {
+            ...response.data.weather,
+            snowConditions: response.data.snowConditions
+          }
+        }));
+      }
+    } catch (err) {
+      console.error(`Error loading weather for ${resortId}:`, err);
+    } finally {
+      loadingIdsRef.current.delete(resortId);
+    }
+  }, [weatherMap]);
+
+  useEffect(() => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const resortId = entry.target.getAttribute('data-resort-id');
+            if (resortId) {
+              loadWeatherForResort(resortId);
+              observerRef.current.unobserve(entry.target);
+            }
+          }
+        });
+      },
+      { rootMargin: '160px', threshold: 0.2 }
+    );
+
+    Object.values(cardRefs.current).forEach((node) => {
+      if (node) observerRef.current.observe(node);
+    });
+
+    return () => observerRef.current?.disconnect();
+  }, [filteredResorts, loadWeatherForResort, page]);
+
+  useEffect(() => {
+    if (!loadMoreRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsLoadingMore(true);
+            setPage((prev) => prev + 1);
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(loadMoreRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isLoadingMore) {
+      const id = setTimeout(() => setIsLoadingMore(false), 200);
+      return () => clearTimeout(id);
+    }
+    return undefined;
+  }, [page, isLoadingMore]);
+
   const loadResorts = async () => {
     try {
       setLoading(true);
@@ -73,6 +158,16 @@ const Resorts = () => {
   };
 
   const handleWatchlistChange = () => {};
+
+  const setCardRef = (resortId) => (node) => {
+    if (node) {
+      cardRefs.current[resortId] = node;
+    }
+  };
+
+  const visibleResorts = useMemo(() => {
+    return filteredResorts.slice(0, page * pageSize);
+  }, [filteredResorts, page]);
 
   if (loading) {
     return (
@@ -137,15 +232,23 @@ const Resorts = () => {
         {filteredResorts.length === 0 ? (
           <p className="no-resorts">{t('resorts.empty')}</p>
         ) : (
-          filteredResorts.map((resort) => (
-            <ResortCard
-              key={resort.id}
-              resort={resort}
-              onWatchlistChange={handleWatchlistChange}
-            />
+          visibleResorts.map((resort) => (
+            <div key={resort.id} ref={setCardRef(resort.id)} data-resort-id={resort.id}>
+              <ResortCard
+                resort={resort}
+                onWatchlistChange={handleWatchlistChange}
+                weatherData={weatherMap[resort.id]}
+              />
+            </div>
           ))
         )}
       </div>
+      {visibleResorts.length < filteredResorts.length && (
+        <div ref={loadMoreRef} className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>{isLoadingMore ? t('common.loading') : t('common.scrollForMore')}</p>
+        </div>
+      )}
     </div>
   );
 };

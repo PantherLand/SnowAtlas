@@ -47,8 +47,8 @@
     "powderForecast": "粉雪预告",
     "lastUpdate": "最后更新",
     "quality": {
+      "ultra": "超粉",
       "powder": "粉雪",
-      "good": "良好",
       "hard": "硬雪",
       "icy": "湿雪带冰",
       "unknown": "未知"
@@ -97,6 +97,7 @@
     "sort": "排序",
     "refresh": "刷新",
     "days": "天",
-    "back": "返回"
+    "back": "返回",
+    "scrollForMore": "继续下滑加载更多"
   }
 }

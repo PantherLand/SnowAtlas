@@ -14,6 +14,7 @@ const WeatherDisplay = ({ weatherData }) => {
   const safeCurrent = current || {};
   const safeSnow = snowConditions || {};
   const safeForecast = Array.isArray(forecast) ? forecast : [];
+  const safeHistorical = Array.isArray(weatherData.historical) ? weatherData.historical : [];
 
   const formatDay = (timestamp) => {
     return format(fromUnixTime(timestamp), 'EEE');
@@ -89,6 +90,35 @@ const WeatherDisplay = ({ weatherData }) => {
             <div key={day.date} className="forecast-day">
               <div className="forecast-date">
                 {index === 0 ? t('time.today') : formatDay(day.date)}
+              </div>
+              <div className="forecast-icon">{day.weather?.main === 'Snow' ? '❄️' : '☁️'}</div>
+              <div className="forecast-temp">
+                <span className="temp-max">{day.temp?.max === undefined ? '--' : Math.round(day.temp.max)}°</span>
+                <span className="temp-min">{day.temp?.min === undefined ? '--' : Math.round(day.temp.min)}°</span>
+              </div>
+              {day.snow > 0 && (
+                <div className="forecast-snow">
+                  ❄️ {Math.round(day.snow)} {t('units.cm')}
+                </div>
+              )}
+              {day.pop > 0 && (
+                <div className="forecast-precipitation">
+                  💧 {Math.round(day.pop * 100)}%
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Past 7 Days */}
+      <div className="weather-section forecast">
+        <h3>{t('weather.historical')}</h3>
+        <div className="forecast-grid">
+          {safeHistorical.map((day, index) => (
+            <div key={`past-${day.date}`} className="forecast-day">
+              <div className="forecast-date">
+                {index === safeHistorical.length - 1 ? t('time.yesterday') : formatDay(day.date)}
               </div>
               <div className="forecast-icon">{day.weather?.main === 'Snow' ? '❄️' : '☁️'}</div>
               <div className="forecast-temp">

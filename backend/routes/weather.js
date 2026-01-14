@@ -8,7 +8,7 @@ const locationService = require('../services/locationService');
  */
 router.get('/:resortId', async (req, res) => {
   try {
-    const resort = locationService.getResortById(req.params.resortId);
+    const resort = await locationService.getResortById(req.params.resortId);
 
     if (!resort) {
       return res.status(404).json({
@@ -69,7 +69,7 @@ router.post('/batch', async (req, res) => {
 
     const weatherDataPromises = resortIds.map(async (resortId) => {
       try {
-        const resort = locationService.getResortById(resortId);
+        const resort = await locationService.getResortById(resortId);
         if (!resort) return null;
 
         const weatherData = await weatherService.getWeatherData(

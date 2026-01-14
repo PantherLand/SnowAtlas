@@ -13,6 +13,7 @@ const ResortDetail = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isCompact, setIsCompact] = useState(false);
   const lang = i18n.language;
 
   useEffect(() => {
@@ -40,6 +41,15 @@ const ResortDetail = () => {
 
     load();
   }, [id]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsCompact(window.scrollY > 140);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const getResortName = () => {
     if (!resort) return '';
@@ -86,7 +96,7 @@ const ResortDetail = () => {
 
   return (
     <div className="resort-detail-page">
-      <div className="detail-header">
+      <div className={`detail-header ${isCompact ? 'compact' : ''}`}>
         <div>
           <Link to="/resorts" className="back-link">← {t('common.back')}</Link>
           <h1 className="detail-title">{getResortName()}</h1>

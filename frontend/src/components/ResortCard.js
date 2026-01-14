@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isInWatchlist, addToWatchlist, removeFromWatchlist } from '../utils/watchlist';
@@ -13,15 +13,21 @@ const ResortCard = ({
 }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const inWatchlist = isInWatchlist(resort.id);
+  const [inWatchlist, setInWatchlist] = useState(isInWatchlist(resort.id));
   const lang = i18n.language;
+
+  useEffect(() => {
+    setInWatchlist(isInWatchlist(resort.id));
+  }, [resort.id]);
 
   const handleWatchlistToggle = (event) => {
     event.stopPropagation();
     if (inWatchlist) {
       removeFromWatchlist(resort.id);
+      setInWatchlist(false);
     } else {
       addToWatchlist(resort.id);
+      setInWatchlist(true);
     }
     onWatchlistChange && onWatchlistChange();
   };

@@ -1,5 +1,5 @@
 const geoip = require('geoip-lite');
-const skiResorts = require('../data/skiResorts.json');
+const resortRepository = require('./resortRepository');
 
 /**
  * Get user's location from IP address
@@ -79,8 +79,9 @@ function attachDistance(resorts, ip) {
  * @param {number} limit - Maximum number of resorts to return
  * @returns {Array} Nearest ski resorts with distance
  */
-function getNearestResorts(ip, limit = 5) {
+async function getNearestResorts(ip, limit = 5) {
   const location = getLocationFromIP(ip);
+  const skiResorts = await resortRepository.getAllResorts();
 
   if (!location || !location.ll) {
     // Return popular resorts if location cannot be determined
@@ -117,8 +118,8 @@ function getNearestResorts(ip, limit = 5) {
  * @param {string} countryCode - Two-letter country code
  * @returns {Array} Ski resorts in the country
  */
-function getResortsByCountry(countryCode) {
-  return skiResorts.filter(resort => resort.countryCode === countryCode);
+async function getResortsByCountry(countryCode) {
+  return resortRepository.getResortsByCountry(countryCode);
 }
 
 /**
@@ -126,16 +127,16 @@ function getResortsByCountry(countryCode) {
  * @param {string} resortId - Resort ID
  * @returns {Object} Resort data
  */
-function getResortById(resortId) {
-  return skiResorts.find(resort => resort.id === resortId);
+async function getResortById(resortId) {
+  return resortRepository.getResortById(resortId);
 }
 
 /**
  * Get all resorts
  * @returns {Array} All ski resorts
  */
-function getAllResorts() {
-  return skiResorts;
+async function getAllResorts() {
+  return resortRepository.getAllResorts();
 }
 
 /**
@@ -143,13 +144,13 @@ function getAllResorts() {
  * @param {string} ip - User's IP address
  * @returns {Array} Resorts in same country with distance
  */
-function getCountryResortsByDistance(ip) {
+async function getCountryResortsByDistance(ip) {
   const location = getLocationFromIP(ip);
   if (!location || !location.country) {
     return getNearestResorts(ip, 10);
   }
 
-  const countryResorts = getResortsByCountry(location.country);
+  const countryResorts = await getResortsByCountry(location.country);
   const withDistance = attachDistance(countryResorts, ip);
 
   return withDistance.sort((a, b) => {

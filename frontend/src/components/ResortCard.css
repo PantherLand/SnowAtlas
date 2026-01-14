@@ -3,9 +3,9 @@
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 16px;
-  box-shadow: 0 16px 30px rgba(255, 121, 168, 0.16);
+  box-shadow: 0 16px 30px rgba(255, 154, 122, 0.16);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid rgba(255, 210, 232, 0.6);
+  border: 2px solid rgba(255, 224, 208, 0.6);
 }
 
 .resort-card.powder-hot {
@@ -35,7 +35,7 @@
 
 .resort-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 34px rgba(255, 121, 168, 0.22);
+  box-shadow: 0 20px 34px rgba(255, 154, 122, 0.22);
 }
 
 .snow-alert {
@@ -63,9 +63,9 @@
 }
 
 .snow-pill.forecast {
-  background: linear-gradient(120deg, #ffe0f0, #fff2f8);
-  color: #6a2a4a;
-  box-shadow: 0 8px 16px rgba(255, 121, 168, 0.25);
+  background: linear-gradient(120deg, #ffe6da, #fff4ee);
+  color: #6a3a2a;
+  box-shadow: 0 8px 16px rgba(255, 154, 122, 0.25);
 }
 
 .resort-card-header {
@@ -93,17 +93,17 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #f0b4cc;
+  color: #f2b49b;
   transition: color 0.2s;
   padding: 4px 8px;
 }
 
 .watchlist-btn:hover {
-  color: #ff79a8;
+  color: #ff9a7a;
 }
 
 .watchlist-btn.in-watchlist {
-  color: #ff4b8a;
+  color: #ff7a59;
 }
 
 .resort-details {
@@ -131,7 +131,7 @@
 .weather-summary {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px dashed rgba(255, 121, 168, 0.35);
+  border-top: 1px dashed rgba(255, 154, 122, 0.35);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -140,7 +140,7 @@
 .current-temp {
   font-size: 2rem;
   font-weight: 700;
-  color: #ff79a8;
+  color: #ff9a7a;
 }
 
 .weather-icon {
@@ -156,7 +156,7 @@
   gap: 4px;
   font-size: 1rem;
   font-weight: 600;
-  color: #ff4b8a;
+  color: #ff7a59;
 }
 
 .snow-forecast.snow-zero {

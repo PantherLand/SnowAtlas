@@ -158,6 +158,7 @@ function calculateSnowConditions(weatherData, resort = null) {
   const history = weatherData.historical;
   const forecast = weatherData.forecast;
   const base = Array.isArray(history) && history.length > 0 ? history : forecast;
+  const future = Array.isArray(forecast) ? forecast : [];
 
   if (!base || base.length === 0) {
     return {
@@ -171,6 +172,7 @@ function calculateSnowConditions(weatherData, resort = null) {
 
   // Calculate total expected snowfall
   const totalSnowForecast = base.reduce((sum, day) => sum + (day.snow || 0), 0);
+  const futureSnowTotal = future.reduce((sum, day) => sum + (day.snow || 0), 0);
 
   // Count snowy days
   const snowyDays = base.filter(day =>
@@ -195,6 +197,18 @@ function calculateSnowConditions(weatherData, resort = null) {
   // Determine snow quality (temp + snowfall + elevation proxy)
   let quality = 'unknown';
   if (adjustedTemp !== null) {
+    if (totalSnowForecast >= 50 && futureSnowTotal >= 10) {
+      quality = 'ultra';
+      return {
+        totalSnowForecast: Math.round(totalSnowForecast * 10) / 10,
+        snowyDays,
+        avgTemp: Math.round(avgTemp * 10) / 10,
+        adjustedTemp: adjustedTemp !== null ? Math.round(adjustedTemp * 10) / 10 : null,
+        maxSnowDepth,
+        quality,
+        lastUpdate: new Date().toISOString()
+      };
+    }
     let score = 0;
     if (adjustedTemp <= -8) score += 2;
     else if (adjustedTemp <= -3) score += 1;
@@ -211,8 +225,8 @@ function calculateSnowConditions(weatherData, resort = null) {
       else if (maxSnowDepth < 10) score -= 1;
     }
 
-    if (score >= 4) quality = 'powder';
-    else if (score >= 2) quality = 'good';
+    if (score >= 4) quality = 'ultra';
+    else if (score >= 2) quality = 'powder';
     else if (score >= 0) quality = 'hard';
     else quality = 'icy';
   }

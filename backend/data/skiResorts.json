@@ -21,8 +21,8 @@
     },
     "popularity": 10,
     "timezone": "America/Vancouver",
-    "trailCount": null,
-    "longestRunKm": null,
+    "trailCount": 241,
+    "longestRunKm": 11.0,
     "trailDataSource": "Whistler Blackcomb"
   },
   {
@@ -46,7 +46,10 @@
       "summit": 3527
     },
     "popularity": 10,
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "trailCount": 195,
+    "longestRunKm": 6.44,
+    "trailDataSource": "Vail Ski Resort"
   },
   {
     "id": "aspen-snowmass",
@@ -98,7 +101,7 @@
     "timezone": "America/Denver",
     "trailCount": null,
     "longestRunKm": null,
-    "trailDataSource": "Park City Mountain Resort"
+    "trailDataSource": "Park City Mountain"
   },
   {
     "id": "chamonix",
@@ -124,7 +127,7 @@
     "timezone": "Europe/Paris",
     "trailCount": null,
     "longestRunKm": null,
-    "trailDataSource": "Chamonix Mont-Blanc"
+    "trailDataSource": "Chamonix"
   },
   {
     "id": "zermatt",
@@ -200,7 +203,7 @@
     },
     "popularity": 10,
     "timezone": "Europe/Paris",
-    "trailCount": null,
+    "trailCount": 68,
     "longestRunKm": null,
     "trailDataSource": "Val Thorens"
   },
@@ -226,8 +229,8 @@
     },
     "popularity": 8,
     "timezone": "Europe/Rome",
-    "trailCount": null,
-    "longestRunKm": null,
+    "trailCount": 45,
+    "longestRunKm": 11.0,
     "trailDataSource": "Cortina d'Ampezzo"
   },
   {
@@ -254,7 +257,7 @@
     "timezone": "Asia/Tokyo",
     "trailCount": null,
     "longestRunKm": null,
-    "trailDataSource": "Niseko United"
+    "trailDataSource": "Niseko, Hokkaido"
   },
   {
     "id": "hakuba",
@@ -281,6 +284,214 @@
     "trailCount": null,
     "longestRunKm": null,
     "trailDataSource": "Hakuba Valley"
+  },
+  {
+    "id": "rusutsu",
+    "name": {
+      "en": "Rusutsu Resort",
+      "zh": "留寿都度假村"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Hokkaido",
+      "zh": "北海道"
+    },
+    "coordinates": {
+      "lat": 42.7375,
+      "lon": 140.9044
+    },
+    "elevation": {
+      "base": 400,
+      "summit": 994
+    },
+    "popularity": 8,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "zao-onsen",
+    "name": {
+      "en": "Zao Onsen Ski Resort",
+      "zh": "藏王温泉滑雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Yamagata",
+      "zh": "山形县"
+    },
+    "coordinates": {
+      "lat": 38.1706,
+      "lon": 140.3981
+    },
+    "elevation": {
+      "base": 880,
+      "summit": 1660
+    },
+    "popularity": 8,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "hakuba-goryu",
+    "name": {
+      "en": "Hakuba Goryu",
+      "zh": "白马五方"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Nagano",
+      "zh": "长野县"
+    },
+    "coordinates": {
+      "lat": 36.7009,
+      "lon": 137.8583
+    },
+    "elevation": {
+      "base": 750,
+      "summit": 1676
+    },
+    "popularity": 7,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "naeba",
+    "name": {
+      "en": "Naeba Ski Resort",
+      "zh": "苗场滑雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Niigata (Yuzawa)",
+      "zh": "新潟（汤泽）"
+    },
+    "coordinates": {
+      "lat": 36.79,
+      "lon": 138.79
+    },
+    "elevation": {
+      "base": 900,
+      "summit": 1789
+    },
+    "popularity": 8,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "kagura",
+    "name": {
+      "en": "Kagura Ski Resort",
+      "zh": "神乐滑雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Niigata (Yuzawa)",
+      "zh": "新潟（汤泽）"
+    },
+    "coordinates": {
+      "lat": 36.88,
+      "lon": 138.77
+    },
+    "elevation": {
+      "base": 620,
+      "summit": 1845
+    },
+    "popularity": 7,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "gala-yuzawa",
+    "name": {
+      "en": "Gala Yuzawa",
+      "zh": "GALA汤泽"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Niigata (Yuzawa)",
+      "zh": "新潟（汤泽）"
+    },
+    "coordinates": {
+      "lat": 36.94,
+      "lon": 138.8
+    },
+    "elevation": {
+      "base": 800,
+      "summit": 1181
+    },
+    "popularity": 8,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "iwappara",
+    "name": {
+      "en": "Iwappara Ski Resort",
+      "zh": "岩原滑雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Niigata (Yuzawa)",
+      "zh": "新潟（汤泽）"
+    },
+    "coordinates": {
+      "lat": 36.93,
+      "lon": 138.78
+    },
+    "elevation": {
+      "base": 430,
+      "summit": 1270
+    },
+    "popularity": 7,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
+  },
+  {
+    "id": "yuzawa-kogen",
+    "name": {
+      "en": "Yuzawa Kogen Ski Resort",
+      "zh": "汤泽高原滑雪场"
+    },
+    "country": "Japan",
+    "countryCode": "JP",
+    "region": {
+      "en": "Niigata (Yuzawa)",
+      "zh": "新潟（汤泽）"
+    },
+    "coordinates": {
+      "lat": 36.94,
+      "lon": 138.82
+    },
+    "elevation": {
+      "base": 450,
+      "summit": 1400
+    },
+    "popularity": 7,
+    "timezone": "Asia/Tokyo",
+    "trailCount": null,
+    "longestRunKm": null,
+    "trailDataSource": null
   },
   {
     "id": "wanlong",
@@ -517,7 +728,7 @@
     },
     "popularity": 9,
     "timezone": "Europe/Paris",
-    "trailCount": null,
+    "trailCount": 19,
     "longestRunKm": null,
     "trailDataSource": "Courchevel"
   },
@@ -569,8 +780,8 @@
     },
     "popularity": 9,
     "timezone": "America/Denver",
-    "trailCount": null,
-    "longestRunKm": null,
+    "trailCount": 116,
+    "longestRunKm": 7.24,
     "trailDataSource": "Jackson Hole Mountain Resort"
   },
   {
@@ -595,8 +806,8 @@
     },
     "popularity": 9,
     "timezone": "America/Edmonton",
-    "trailCount": null,
-    "longestRunKm": null,
+    "trailCount": 145,
+    "longestRunKm": 8.0,
     "trailDataSource": "Lake Louise Ski Resort"
   }
 ]

@@ -32,7 +32,7 @@
 .current-temp-large {
   font-size: 4rem;
   font-weight: 700;
-  color: #ff79a8;
+  color: #ff9a7a;
   line-height: 1;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .snow-stat {
-  color: #ff4b8a;
+  color: #ff7a59;
   font-weight: 600;
 }
 
@@ -150,7 +150,7 @@
 .forecast-precipitation {
   font-size: 0.8rem;
   margin-top: 4px;
-  color: #ff4b8a;
+  color: #ff7a59;
 }
 
 .weather-loading {

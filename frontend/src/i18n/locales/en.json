@@ -47,8 +47,8 @@
     "powderForecast": "Powder incoming",
     "lastUpdate": "Last Updated",
     "quality": {
+      "ultra": "Ultra Powder",
       "powder": "Powder",
-      "good": "Good",
       "hard": "Hard Pack",
       "icy": "Wet & Icy",
       "unknown": "Unknown"
@@ -97,6 +97,7 @@
     "sort": "Sort",
     "refresh": "Refresh",
     "days": "days",
-    "back": "Back"
+    "back": "Back",
+    "scrollForMore": "Scroll to load more"
   }
 }
