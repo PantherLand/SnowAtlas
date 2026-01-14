@@ -104,15 +104,20 @@ const Resorts = () => {
     return () => observerRef.current?.disconnect();
   }, [filteredResorts, loadWeatherForResort, page]);
 
+  const visibleResorts = useMemo(() => {
+    return filteredResorts.slice(0, page * pageSize);
+  }, [filteredResorts, page]);
+
   useEffect(() => {
     if (!loadMoreRef.current) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsLoadingMore(true);
-            setPage((prev) => prev + 1);
-          }
+          if (!entry.isIntersecting) return;
+          if (isLoadingMore) return;
+          if (visibleResorts.length >= filteredResorts.length) return;
+          setIsLoadingMore(true);
+          setPage((prev) => prev + 1);
         });
       },
       { rootMargin: '200px' }
@@ -120,7 +125,7 @@ const Resorts = () => {
 
     observer.observe(loadMoreRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [filteredResorts.length, isLoadingMore, visibleResorts.length]);
 
   useEffect(() => {
     if (isLoadingMore) {
@@ -164,10 +169,6 @@ const Resorts = () => {
       cardRefs.current[resortId] = node;
     }
   };
-
-  const visibleResorts = useMemo(() => {
-    return filteredResorts.slice(0, page * pageSize);
-  }, [filteredResorts, page]);
 
   if (loading) {
     return (
