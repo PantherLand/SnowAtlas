@@ -1,4 +1,8 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch {
+  // dotenv is optional in managed environments (e.g., Railway).
+}
 const { Pool } = require('pg');
 
 const databaseUrl = process.env.DATABASE_URL;
