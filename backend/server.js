@@ -76,7 +76,6 @@ Available Endpoints:
   GET  /api/weather/:resortId    - Get weather for resort
   POST /api/weather/batch        - Get weather for multiple resorts
 
-${!process.env.OPENWEATHER_API_KEY ? '⚠️  WARNING: OPENWEATHER_API_KEY not set!' : '✅ OpenWeather API key configured'}
   `);
   });
 }
