@@ -6,7 +6,7 @@
 
 .detail-header {
   position: fixed;
-  top: 96px;
+  top: 116px;
   left: 50%;
   transform: translateX(-50%);
   width: min(1200px, calc(100% - 40px));
@@ -21,7 +21,7 @@
 }
 
 .resort-detail-page {
-  padding-top: 220px;
+  padding-top: 0;
 }
 
 .back-link {
@@ -106,13 +106,13 @@ body.hide-global-header .detail-header {
 
 @media (max-width: 768px) {
   .detail-header {
-    top: 154px;
+    top: 174px;
     width: calc(100% - 32px);
     padding: 20px 18px;
   }
 
   .resort-detail-page {
-    padding-top: 160px;
+    padding-top: 0;
   }
 
   .detail-title {

@@ -41,7 +41,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding-top: 20px;
+  padding-top: 116px;
   padding-bottom: 40px;
 }
 
@@ -109,7 +109,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 16px;
+    padding-top: 174px;
     padding-bottom: 32px;
   }
 }
