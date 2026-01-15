@@ -55,11 +55,11 @@ const ResortDetail = () => {
 
           // Hide/show header based on scroll direction (like Trip.com)
           // Hide when scrolling down, show when scrolling up
-          if (currentScrollY > 100) { // Only hide after scrolling past 100px
-            if (currentScrollY > lastScrollY) {
+          if (currentScrollY > 50) { // Start hiding after scrolling past 50px
+            if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY) > 5) {
               // Scrolling down - hide header
               document.body.classList.add('hide-global-header');
-            } else {
+            } else if (lastScrollY - currentScrollY > 5) {
               // Scrolling up - show header
               document.body.classList.remove('hide-global-header');
             }

@@ -74,7 +74,7 @@
 
 /* Adjust detail header position when global header is hidden */
 body.hide-global-header .detail-header {
-  top: 20px;
+  top: 20px !important;
 }
 
 .detail-meta {
