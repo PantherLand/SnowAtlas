@@ -4,21 +4,17 @@
   padding: 20px;
 }
 
-.detail-header {
-  position: fixed;
-  top: 116px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1200px, calc(100% - 80px));
-  z-index: 50;
-  background: linear-gradient(140deg, rgba(255, 250, 245, 0.92) 0%, rgba(245, 252, 255, 0.92) 100%);
+.detail-container {
+  background: white;
   border-radius: 16px;
-  padding: 20px 32px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-  margin-bottom: 24px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  transition: padding 0.2s ease, box-shadow 0.2s ease, top 0.3s ease;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.detail-header {
+  background: linear-gradient(135deg, #ffe6da 0%, #d6f0ff 100%);
+  padding: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .resort-detail-page {
@@ -28,104 +24,103 @@
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   text-decoration: none;
-  color: #6b6b6b;
-  font-weight: 500;
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-  transition: color 0.2s;
+  color: #2a2a2a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  transition: opacity 0.2s;
 }
 
 .back-link:hover {
-  color: #2a2a2a;
+  opacity: 0.7;
 }
 
 .detail-title {
   margin: 0;
-  font-size: 2rem;
-  color: #2a2a2a;
-  font-weight: 700;
-  transition: font-size 0.2s ease;
+  font-size: 2.5rem;
+  color: #26323b;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .detail-subtitle {
-  margin: 4px 0 0;
-  color: #6b6b6b;
-  font-size: 0.95rem;
-  transition: opacity 0.2s ease, max-height 0.2s ease;
-}
-
-.detail-header.compact {
-  padding: 12px 28px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.detail-header.compact .back-link {
-  display: none;
-}
-
-.detail-header.compact .detail-title {
+  margin: 8px 0 0;
+  color: #6a7a86;
   font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.detail-header.compact .detail-subtitle {
-  opacity: 0;
-  max-height: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-/* Adjust detail header position when global header is hidden */
-body.hide-global-header .detail-header {
-  top: 20px !important;
 }
 
 .detail-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 150px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .detail-meta div {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 18px;
-  padding: 16px 18px;
-  border: 1px dashed rgba(255, 121, 168, 0.25);
+  background: white;
+  padding: 24px 20px;
+  text-align: center;
 }
 
 .detail-meta span {
   display: block;
-  color: #6b6b6b;
-  font-size: 0.9rem;
+  color: #6a7a86;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
 }
 
 .detail-meta strong {
   display: block;
-  margin-top: 6px;
-  font-size: 1.1rem;
-  color: #2a2a2a;
+  font-size: 1.4rem;
+  color: #26323b;
+  font-weight: 700;
+}
+
+.detail-content {
+  padding: 40px;
 }
 
 @media (max-width: 768px) {
-  .detail-header {
-    top: 174px;
-    width: calc(100% - 32px);
-    padding: 20px 18px;
+  .resort-detail-page {
+    padding: 16px;
   }
 
-  .resort-detail-page {
-    padding-top: 0;
+  .detail-container {
+    border-radius: 12px;
+  }
+
+  .detail-header {
+    padding: 24px 20px;
   }
 
   .detail-title {
     font-size: 1.8rem;
   }
 
+  .detail-subtitle {
+    font-size: 0.95rem;
+  }
+
   .detail-meta {
-    margin-top: 130px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-meta div {
+    padding: 20px 16px;
+  }
+
+  .detail-meta strong {
+    font-size: 1.2rem;
+  }
+
+  .detail-content {
+    padding: 24px 20px;
   }
 }

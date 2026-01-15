@@ -1,10 +1,10 @@
 .weather-display {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 252, 255, 0.95));
-  border-radius: 20px;
-  padding: 24px;
-  margin: 20px 0;
-  box-shadow: 0 18px 34px rgba(174, 230, 255, 0.35);
-  border: 2px solid rgba(174, 230, 255, 0.5);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: none;
 }
 
 .weather-section {

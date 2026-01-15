@@ -13,7 +13,6 @@ const ResortDetail = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isCompact, setIsCompact] = useState(false);
   const lang = i18n.language;
 
   useEffect(() => {
@@ -50,8 +49,6 @@ const ResortDetail = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          const scrolled = currentScrollY > 140;
-          setIsCompact(scrolled);
 
           // Hide/show header based on scroll direction (like Trip.com)
           // Hide when scrolling down, show when scrolling up
@@ -128,42 +125,44 @@ const ResortDetail = () => {
 
   return (
     <div className="resort-detail-page">
-      <div className={`detail-header ${isCompact ? 'compact' : ''}`}>
-        <div>
+      <div className="detail-container">
+        <div className="detail-header">
           <Link to="/resorts" className="back-link">← {t('common.back')}</Link>
           <h1 className="detail-title">{getResortName()}</h1>
           <p className="detail-subtitle">{getRegionName()}, {resort.country}</p>
         </div>
-      </div>
 
-      <div className="detail-meta">
-        <div>
-          <span>{t('resort.elevation')}</span>
-          <strong>{resort.elevation.base}m - {resort.elevation.summit}m</strong>
+        <div className="detail-meta">
+          <div>
+            <span>{t('resort.elevation')}</span>
+            <strong>{resort.elevation.base}m - {resort.elevation.summit}m</strong>
+          </div>
+          <div>
+            <span>{t('resort.distance')}</span>
+            <strong>{resort.distance ?? '--'} {t('units.km')}</strong>
+          </div>
+          <div>
+            <span>{t('resort.trails')}</span>
+            <strong>{resort.trailCount ?? '--'}</strong>
+          </div>
+          <div>
+            <span>{t('resort.longestRun')}</span>
+            <strong>
+              {resort.longestRunKm === null || resort.longestRunKm === undefined
+                ? '--'
+                : `${resort.longestRunKm} ${t('units.km')}`}
+            </strong>
+          </div>
         </div>
-        <div>
-          <span>{t('resort.distance')}</span>
-          <strong>{resort.distance ?? '--'} {t('units.km')}</strong>
-        </div>
-        <div>
-          <span>{t('resort.trails')}</span>
-          <strong>{resort.trailCount ?? '--'}</strong>
-        </div>
-        <div>
-          <span>{t('resort.longestRun')}</span>
-          <strong>
-            {resort.longestRunKm === null || resort.longestRunKm === undefined
-              ? '--'
-              : `${resort.longestRunKm} ${t('units.km')}`}
-          </strong>
+
+        <div className="detail-content">
+          {weatherData ? (
+            <WeatherDisplay weatherData={weatherData} />
+          ) : (
+            <div className="weather-loading">{t('common.loading')}</div>
+          )}
         </div>
       </div>
-
-      {weatherData ? (
-        <WeatherDisplay weatherData={weatherData} />
-      ) : (
-        <div className="weather-loading">{t('common.loading')}</div>
-      )}
     </div>
   );
 };
