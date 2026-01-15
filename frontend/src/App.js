@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from './components/Header';
+import UpdateNotification from './components/UpdateNotification';
 import Home from './pages/Home';
 import Resorts from './pages/Resorts';
 import Watchlist from './pages/Watchlist';
@@ -14,6 +15,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <UpdateNotification />
         <Header />
         <main className="main-content">
           <Routes>
