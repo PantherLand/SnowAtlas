@@ -34,7 +34,6 @@ body {
   background-image:
     radial-gradient(220px 220px at 15% 90%, rgba(217, 204, 255, 0.35), transparent),
     radial-gradient(180px 180px at 85% 60%, rgba(255, 231, 206, 0.45), transparent);
-  padding-top: env(safe-area-inset-top);
   padding-right: env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);

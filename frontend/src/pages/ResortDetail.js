@@ -44,11 +44,24 @@ const ResortDetail = () => {
 
   useEffect(() => {
     const onScroll = () => {
-      setIsCompact(window.scrollY > 140);
+      const scrolled = window.scrollY > 140;
+      setIsCompact(scrolled);
+
+      // Hide global header on mobile when scrolling detail page
+      if (window.innerWidth <= 768) {
+        if (scrolled) {
+          document.body.classList.add('hide-global-header');
+        } else {
+          document.body.classList.remove('hide-global-header');
+        }
+      }
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.classList.remove('hide-global-header');
+    };
   }, []);
 
   const getResortName = () => {
