@@ -58,11 +58,9 @@ const ResortDetail = () => {
           if (currentScrollY > 50) { // Start hiding after scrolling past 50px
             if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY) > 5) {
               // Scrolling down - hide header
-              console.log('Hiding header, scroll:', currentScrollY);
               document.body.classList.add('hide-global-header');
             } else if (lastScrollY - currentScrollY > 5) {
               // Scrolling up - show header
-              console.log('Showing header, scroll:', currentScrollY);
               document.body.classList.remove('hide-global-header');
             }
           } else {
