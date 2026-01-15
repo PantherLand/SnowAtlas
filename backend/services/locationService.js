@@ -166,6 +166,13 @@ async function getCountryResortsByDistance(ip) {
   }
 
   const countryResorts = await getResortsByCountry(location.country);
+
+  // If no resorts found in user's country, fall back to nearest resorts globally
+  if (!countryResorts || countryResorts.length === 0) {
+    console.log(`⚠️  No resorts found in country ${location.country}, falling back to nearest resorts globally`);
+    return getNearestResorts(ip, 10);
+  }
+
   const withDistance = attachDistance(countryResorts, ip);
 
   return withDistance.sort((a, b) => {
