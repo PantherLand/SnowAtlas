@@ -52,11 +52,16 @@ const ResortDetail = () => {
           const currentScrollY = window.scrollY;
 
           // Show sticky header when scrolled past the main header
-          setShowStickyHeader(currentScrollY > 200);
+          const shouldShowSticky = currentScrollY > 200;
+          setShowStickyHeader(shouldShowSticky);
 
-          // Hide/show global header based on scroll direction (like Trip.com)
-          // Hide when scrolling down, show when scrolling up
-          if (currentScrollY > 50) { // Start hiding after scrolling past 50px
+          // When sticky header is visible, always hide global header
+          // Only show global header when near the top (< 200px)
+          if (shouldShowSticky) {
+            // Sticky header is showing - always hide global header
+            document.body.classList.add('hide-global-header');
+          } else if (currentScrollY > 50) {
+            // Between 50-200px - use scroll direction to decide
             if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY) > 5) {
               // Scrolling down - hide header
               document.body.classList.add('hide-global-header');
@@ -65,7 +70,7 @@ const ResortDetail = () => {
               document.body.classList.remove('hide-global-header');
             }
           } else {
-            // At top of page - always show header
+            // At top of page (< 50px) - always show global header
             document.body.classList.remove('hide-global-header');
           }
 
