@@ -9,6 +9,9 @@ const weatherRouter = require('./routes/weather');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Trust proxy - required for getting real IP behind reverse proxies/load balancers
+app.set('trust proxy', true);
+
 // Middleware
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -19,7 +22,12 @@ app.use(cookieParser());
 
 // Request logging middleware
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+    || req.headers['x-real-ip']
+    || req.headers['cf-connecting-ip']
+    || req.socket.remoteAddress
+    || req.ip;
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - IP: ${ip}`);
   next();
 });
 
