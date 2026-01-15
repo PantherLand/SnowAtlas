@@ -13,6 +13,7 @@ const ResortDetail = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
   const lang = i18n.language;
 
   useEffect(() => {
@@ -50,7 +51,10 @@ const ResortDetail = () => {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
 
-          // Hide/show header based on scroll direction (like Trip.com)
+          // Show sticky header when scrolled past the main header
+          setShowStickyHeader(currentScrollY > 200);
+
+          // Hide/show global header based on scroll direction (like Trip.com)
           // Hide when scrolling down, show when scrolling up
           if (currentScrollY > 50) { // Start hiding after scrolling past 50px
             if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY) > 5) {
@@ -125,6 +129,14 @@ const ResortDetail = () => {
 
   return (
     <div className="resort-detail-page">
+      {/* Sticky header that shows when scrolling */}
+      <div className={`sticky-resort-header ${showStickyHeader ? 'visible' : ''}`}>
+        <div className="sticky-header-content">
+          <Link to="/resorts" className="sticky-back-link">←</Link>
+          <h2 className="sticky-resort-name">{getResortName()}</h2>
+        </div>
+      </div>
+
       <div className="detail-container">
         <div className="detail-header">
           <Link to="/resorts" className="back-link">← {t('common.back')}</Link>

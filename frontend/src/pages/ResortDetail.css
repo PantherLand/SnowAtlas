@@ -4,6 +4,69 @@
   padding: 20px;
 }
 
+/* Sticky header that shows resort name when scrolling */
+.sticky-resort-header {
+  position: fixed;
+  top: 116px;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+  pointer-events: none;
+}
+
+.sticky-resort-header.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.hide-global-header .sticky-resort-header {
+  top: 0;
+}
+
+.sticky-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sticky-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  text-decoration: none;
+  color: #26323b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.sticky-back-link:hover {
+  background-color: #f5f5f5;
+}
+
+.sticky-resort-name {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #26323b;
+  font-weight: 700;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .detail-container {
   background: white;
   border-radius: 16px;
@@ -90,6 +153,22 @@
 @media (max-width: 768px) {
   .resort-detail-page {
     padding: 16px;
+  }
+
+  .sticky-resort-header {
+    top: 174px;
+  }
+
+  body.hide-global-header .sticky-resort-header {
+    top: 0;
+  }
+
+  .sticky-header-content {
+    padding: 12px 16px;
+  }
+
+  .sticky-resort-name {
+    font-size: 1.1rem;
   }
 
   .detail-container {
