@@ -43,19 +43,38 @@ const ResortDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    const onScroll = () => {
-      const scrolled = window.scrollY > 140;
-      setIsCompact(scrolled);
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-      // Hide global header on mobile when scrolling detail page
-      if (window.innerWidth <= 768) {
-        if (scrolled) {
-          document.body.classList.add('hide-global-header');
-        } else {
-          document.body.classList.remove('hide-global-header');
-        }
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrolled = currentScrollY > 140;
+          setIsCompact(scrolled);
+
+          // Hide/show header based on scroll direction (like Trip.com)
+          // Hide when scrolling down, show when scrolling up
+          if (currentScrollY > 100) { // Only hide after scrolling past 100px
+            if (currentScrollY > lastScrollY) {
+              // Scrolling down - hide header
+              document.body.classList.add('hide-global-header');
+            } else {
+              // Scrolling up - show header
+              document.body.classList.remove('hide-global-header');
+            }
+          } else {
+            // At top of page - always show header
+            document.body.classList.remove('hide-global-header');
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {

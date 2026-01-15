@@ -72,6 +72,11 @@
   font-size: 0.85rem;
 }
 
+/* Adjust detail header position when global header is hidden */
+body.hide-global-header .detail-header {
+  top: 20px;
+}
+
 .detail-meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

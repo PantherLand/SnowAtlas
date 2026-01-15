@@ -10,11 +10,9 @@
   transition: transform 0.3s ease;
 }
 
-/* Hide header on mobile when scrolling detail page */
-@media (max-width: 768px) {
-  body.hide-global-header .app-header {
-    transform: translateY(-100%);
-  }
+/* Hide header when scrolling down (both desktop and mobile) */
+body.hide-global-header .app-header {
+  transform: translateY(-100%);
 }
 
 .header-container {
