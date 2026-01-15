@@ -13,7 +13,7 @@ const ResortDetail = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isCompact, setIsCompact] = useState(false);
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
   const lang = i18n.language;
 
   useEffect(() => {
@@ -43,12 +43,45 @@ const ResortDetail = () => {
   }, [id]);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
     const onScroll = () => {
-      setIsCompact(window.scrollY > 140);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // Show sticky header when scrolled past the main header
+          setShowStickyHeader(currentScrollY > 200);
+
+          // Hide/show global header based on scroll direction (like Trip.com)
+          // Hide when scrolling down, show when scrolling up
+          if (currentScrollY > 50) { // Start hiding after scrolling past 50px
+            if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY) > 5) {
+              // Scrolling down - hide header
+              document.body.classList.add('hide-global-header');
+            } else if (lastScrollY - currentScrollY > 5) {
+              // Scrolling up - show header
+              document.body.classList.remove('hide-global-header');
+            }
+          } else {
+            // At top of page - always show header
+            document.body.classList.remove('hide-global-header');
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.classList.remove('hide-global-header');
+    };
   }, []);
 
   const getResortName = () => {
@@ -96,42 +129,52 @@ const ResortDetail = () => {
 
   return (
     <div className="resort-detail-page">
-      <div className={`detail-header ${isCompact ? 'compact' : ''}`}>
-        <div>
+      {/* Sticky header that shows when scrolling */}
+      <div className={`sticky-resort-header ${showStickyHeader ? 'visible' : ''}`}>
+        <div className="sticky-header-content">
+          <Link to="/resorts" className="sticky-back-link">←</Link>
+          <h2 className="sticky-resort-name">{getResortName()}</h2>
+        </div>
+      </div>
+
+      <div className="detail-container">
+        <div className="detail-header">
           <Link to="/resorts" className="back-link">← {t('common.back')}</Link>
           <h1 className="detail-title">{getResortName()}</h1>
           <p className="detail-subtitle">{getRegionName()}, {resort.country}</p>
         </div>
-      </div>
 
-      <div className="detail-meta">
-        <div>
-          <span>{t('resort.elevation')}</span>
-          <strong>{resort.elevation.base}m - {resort.elevation.summit}m</strong>
+        <div className="detail-meta">
+          <div>
+            <span>{t('resort.elevation')}</span>
+            <strong>{resort.elevation.base}m - {resort.elevation.summit}m</strong>
+          </div>
+          <div>
+            <span>{t('resort.distance')}</span>
+            <strong>{resort.distance ?? '--'} {t('units.km')}</strong>
+          </div>
+          <div>
+            <span>{t('resort.trails')}</span>
+            <strong>{resort.trailCount ?? '--'}</strong>
+          </div>
+          <div>
+            <span>{t('resort.longestRun')}</span>
+            <strong>
+              {resort.longestRunKm === null || resort.longestRunKm === undefined
+                ? '--'
+                : `${resort.longestRunKm} ${t('units.km')}`}
+            </strong>
+          </div>
         </div>
-        <div>
-          <span>{t('resort.distance')}</span>
-          <strong>{resort.distance ?? '--'} {t('units.km')}</strong>
-        </div>
-        <div>
-          <span>{t('resort.trails')}</span>
-          <strong>{resort.trailCount ?? '--'}</strong>
-        </div>
-        <div>
-          <span>{t('resort.longestRun')}</span>
-          <strong>
-            {resort.longestRunKm === null || resort.longestRunKm === undefined
-              ? '--'
-              : `${resort.longestRunKm} ${t('units.km')}`}
-          </strong>
+
+        <div className="detail-content">
+          {weatherData ? (
+            <WeatherDisplay weatherData={weatherData} />
+          ) : (
+            <div className="weather-loading">{t('common.loading')}</div>
+          )}
         </div>
       </div>
-
-      {weatherData ? (
-        <WeatherDisplay weatherData={weatherData} />
-      ) : (
-        <div className="weather-loading">{t('common.loading')}</div>
-      )}
     </div>
   );
 };

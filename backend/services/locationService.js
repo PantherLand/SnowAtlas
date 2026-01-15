@@ -8,7 +8,8 @@ const resortRepository = require('./resortRepository');
  */
 function getLocationFromIP(ip) {
   // Handle localhost/development
-  if (ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1') {
+  if (!ip || ip === '::1' || ip === '127.0.0.1' || ip === '::ffff:127.0.0.1' || ip.startsWith('::ffff:127.')) {
+    console.log('⚠️  Local/development IP detected, using default location (Beijing)');
     return {
       country: 'CN',
       city: 'Development',
@@ -16,7 +17,21 @@ function getLocationFromIP(ip) {
     };
   }
 
-  const geo = geoip.lookup(ip);
+  // Remove IPv6 prefix if present
+  const cleanIP = ip.replace('::ffff:', '');
+
+  const geo = geoip.lookup(cleanIP);
+
+  if (geo) {
+    console.log(`📍 Location detected from IP ${cleanIP}:`, {
+      country: geo.country,
+      city: geo.city,
+      coordinates: geo.ll
+    });
+  } else {
+    console.log(`⚠️  Could not detect location for IP: ${cleanIP}`);
+  }
+
   return geo;
 }
 

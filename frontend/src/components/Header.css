@@ -2,10 +2,19 @@
   background: linear-gradient(135deg, #ffe6da 0%, #d6f0ff 100%);
   color: #26323b;
   padding: 18px 0;
+  padding-top: calc(18px + env(safe-area-inset-top));
   box-shadow: 0 8px 24px rgba(255, 121, 168, 0.2);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
+  transition: top 0.3s ease;
+}
+
+/* Hide header when scrolling down (both desktop and mobile) */
+body.hide-global-header .app-header {
+  top: -200px;
 }
 
 .header-container {
