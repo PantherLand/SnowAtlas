@@ -323,36 +323,36 @@
 
   .forecast-grid {
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 10px;
+    gap: 8px;
   }
 
   .forecast-day {
-    padding: 12px 8px;
+    padding: 10px 6px;
   }
 
   .forecast-date {
-    margin-bottom: 6px;
-    font-size: 0.8rem;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
   }
 
   .forecast-icon {
-    font-size: 1.6rem;
-    margin: 6px 0;
+    font-size: 1.4rem;
+    margin: 4px 0;
   }
 
   .forecast-temp {
-    font-size: 0.9rem;
-    margin: 8px 0;
+    font-size: 0.85rem;
+    margin: 6px 0;
   }
 
   .forecast-snow {
-    font-size: 0.75rem;
-    padding: 3px 6px;
-    margin-top: 6px;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    margin-top: 4px;
   }
 
   .forecast-precipitation {
-    font-size: 0.75rem;
-    margin-top: 3px;
+    font-size: 0.7rem;
+    margin-top: 2px;
   }
 }
