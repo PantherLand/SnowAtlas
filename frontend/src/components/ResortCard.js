@@ -69,7 +69,7 @@ const ResortCard = ({
         </div>
         {isPowderHot && (
           <span className="powder-badge" title={t('weather.powderAlert')}>
-            ✨ 粉雪热区
+            ✨ {t('weather.powderAlert')}
           </span>
         )}
         <button

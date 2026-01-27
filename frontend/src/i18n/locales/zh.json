@@ -85,6 +85,13 @@
     "daysAgo": "{{count}}天前",
     "inDays": "{{count}}天后"
   },
+  "update": {
+    "title": "新版本可用",
+    "message": "有新功能和改进等你体验",
+    "updating": "更新中...",
+    "now": "立即更新",
+    "later": "稍后"
+  },
   "common": {
     "loading": "加载中...",
     "error": "错误",
