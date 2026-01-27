@@ -269,6 +269,10 @@
     border-radius: 16px;
   }
 
+  .snow-alert .snow-pill {
+    padding: 4px 12px;
+  }
+
   .current-weather-content {
     flex-direction: column;
     align-items: flex-start;
@@ -337,7 +341,7 @@
 
   .forecast-icon {
     font-size: 1.4rem;
-    margin: 4px 0;
+    margin: 0;
   }
 
   .forecast-temp {
