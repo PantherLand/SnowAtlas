@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './UpdateNotification.css';
 
 const UpdateNotification = () => {
+  const { t } = useTranslation();
   const [showUpdate, setShowUpdate] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -37,8 +39,8 @@ const UpdateNotification = () => {
       <div className="update-content">
         <div className="update-icon">🎉</div>
         <div className="update-text">
-          <div className="update-title">新版本可用</div>
-          <div className="update-message">有新功能和改进等你体验</div>
+          <div className="update-title">{t('update.title')}</div>
+          <div className="update-message">{t('update.message')}</div>
         </div>
         <div className="update-actions">
           <button
@@ -46,14 +48,14 @@ const UpdateNotification = () => {
             onClick={handleRefresh}
             disabled={isUpdating}
           >
-            {isUpdating ? '更新中...' : '立即更新'}
+            {isUpdating ? t('update.updating') : t('update.now')}
           </button>
           <button
             className="update-btn update-btn-secondary"
             onClick={handleDismiss}
             disabled={isUpdating}
           >
-            稍后
+            {t('update.later')}
           </button>
         </div>
       </div>

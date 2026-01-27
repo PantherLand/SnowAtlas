@@ -85,6 +85,13 @@
     "daysAgo": "{{count}} days ago",
     "inDays": "in {{count}} days"
   },
+  "update": {
+    "title": "New Version Available",
+    "message": "New features and improvements await you",
+    "updating": "Updating...",
+    "now": "Update Now",
+    "later": "Later"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

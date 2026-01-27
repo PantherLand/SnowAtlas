@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { format, fromUnixTime } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 import './WeatherDisplay.css';
 
 const WeatherDisplay = ({ weatherData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   if (!weatherData) {
     return <div className="weather-loading">{t('common.loading')}</div>;
@@ -17,7 +18,8 @@ const WeatherDisplay = ({ weatherData }) => {
   const safeHistorical = Array.isArray(weatherData.historical) ? weatherData.historical : [];
 
   const formatDay = (timestamp) => {
-    return format(fromUnixTime(timestamp), 'EEE');
+    const options = i18n.language === 'zh' ? { locale: zhCN } : {};
+    return format(fromUnixTime(timestamp), 'EEE', options);
   };
 
   // Get weather icon based on condition
