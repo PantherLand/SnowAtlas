@@ -16,6 +16,7 @@ async function getWeatherData(lat, lon) {
         latitude: lat,
         longitude: lon,
         current_weather: true,
+        current: ['relative_humidity_2m'].join(','),
         daily: [
           'weathercode',
           'temperature_2m_max',
@@ -24,7 +25,8 @@ async function getWeatherData(lat, lon) {
           'snowfall_sum',
           'snow_depth_max',
           'precipitation_probability_max',
-          'wind_speed_10m_max'
+          'wind_speed_10m_max',
+          'relative_humidity_2m_max'
         ].join(','),
         timezone: 'auto',
         past_days: 7,
@@ -36,7 +38,7 @@ async function getWeatherData(lat, lon) {
     const daily = buildDailySeries(data.daily || {});
 
     const weatherData = {
-      current: buildCurrent(data.current_weather),
+      current: buildCurrent(data.current_weather, data.current),
       historical: daily.past,
       forecast: daily.future
     };
@@ -51,8 +53,8 @@ async function getWeatherData(lat, lon) {
   }
 }
 
-function buildCurrent(currentWeather) {
-  if (!currentWeather) {
+function buildCurrent(currentWeather, currentConditions) {
+  if (!currentWeather && !currentConditions) {
     return {
       temp: null,
       feels_like: null,
@@ -64,14 +66,16 @@ function buildCurrent(currentWeather) {
     };
   }
 
+  const currentTime = currentWeather?.time || currentConditions?.time;
+
   return {
     temp: currentWeather.temperature ?? null,
     feels_like: null,
-    humidity: null,
+    humidity: currentConditions?.relative_humidity_2m ?? null,
     wind_speed: currentWeather.windspeed ?? null,
     weather: currentWeather.weathercode === undefined ? null : getWeatherDescription(currentWeather.weathercode),
     snow_1h: null,
-    timestamp: currentWeather.time ? Math.floor(new Date(currentWeather.time).getTime() / 1000) : null
+    timestamp: currentTime ? Math.floor(new Date(currentTime).getTime() / 1000) : null
   };
 }
 
@@ -97,7 +101,7 @@ function buildDailySeries(daily) {
       weather: weatherCode === null ? null : getWeatherDescription(weatherCode),
       snow,
       snowDepth: daily.snow_depth_max?.[index] ?? null,
-      humidity: null,
+      humidity: daily.relative_humidity_2m_max?.[index] ?? null,
       wind_speed: daily.wind_speed_10m_max?.[index] ?? null,
       pop: daily.precipitation_probability_max?.[index] !== undefined
         ? daily.precipitation_probability_max[index] / 100
