@@ -2,6 +2,10 @@
 
 A Progressive Web App (PWA) for monitoring ski resorts worldwide with real-time weather and snow forecasts.
 
+## 🌐 Live Demo
+
+https://faithful-enjoyment-production-7892.up.railway.app/
+
 ## 🌟 Features
 
 - 🌍 **Global Coverage**: Monitor 20+ popular ski resorts worldwide
